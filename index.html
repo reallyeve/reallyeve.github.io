@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Heather's Archive</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 200;
+      letter-spacing: 1px;
+      margin: 25px 0 5px 0;
+    }
+
+    /* 메뉴 */
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu button {
+      border: none;
+      background: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #555;
+      transition: 0.3s;
+    }
+
+    .menu button:hover {
+      color: black;
+      transform: scale(1.1);
+    }
+
+    .active {
+      font-weight: bold;
+      color: black;
+    }
+
+    .content {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    /* 🎬 Concert용 (기존 유지) */
+    .grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Post용 */
+    #postList div {
+     text-align: left;
+     font-size: 14px;
+     }
+
+    /* 🖼 Gallery 전용 */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 20px;
+      overflow: hidden;
+      transition: 0.3s;
+      width: 400px;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* 🎬 영상 영역 */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-wrapper:hover .play-button {
+      background: rgba(0,0,0,0.8);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .video-wrapper:hover video {
+      filter: brightness(80%);
+    }
+
+    /* 텍스트 */
+    .title {
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* 🖼 Gallery 이미지 */
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .gallery-grid .card {
+      width: 100%;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    textarea {
+      width: 320px;
+      height: 120px;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid #ddd;
+    }
+
+    .submit {
+      margin-top: 15px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 20px;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    .board-desc {
+     font-size: 13px;
+     color: #999; !important;
+     font-style: italic; !important;
+     margin-top: 18px;
+     line-height: 1.6;
+     text-align: center;
+     }  
+
+    .post-footer {
+     font-size: 13px;
+     color: #aaa; !important;
+     font-style: italic; !important;
+     margin-top: 18px;
+     line-height: 1.6;
+     text-align: center;
+    
+     }
+
+    /* 모달 */
+    #modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal img, #modal video {
+      width: 70%;
+      border-radius: 20px;
+    }
+
+    #blogList div {
+  text-align: left;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <h1>&lt;Heather's Archive&gt;</h1>
+
+  <div class="menu">
+    <button onclick="showPage('gallery', this)"class="active">Gallery</button>
+    <button onclick="showPage('concert', this)">Concert</button>
+    <button onclick="showPage('board', this)">Post</button>
+    <button onclick="showPage('blog', this)">Blog</button>
+  </div>
+
+  <div class="content">
+
+    <!-- 🖼 Gallery -->
+    <div id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+
+        <div class="card"><img src="love1.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love2.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love3.jpg" onclick="openModal(this)"></div>
+
+        <div class="card"><img src="love4.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love5.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love6.jpg" onclick="openModal(this)"></div>
+
+        <div class="card"><img src="love7.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love8.jpg" onclick="openModal(this)"></div>
+        <div class="card"><img src="love9.jpg" onclick="openModal(this)"></div>
+
+      </div>
+    </div>
+
+    <!-- 🎬 Concert -->
+    <div id="concert" class="hidden">
+      <h2>Concert</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="video-wrapper" onclick="openModal(this)">
+            <video src="video22.mp4" poster="thumb22.jpg"></video>
+            <div class="play-button">▶</div>
+          </div>
+          <p class="title">Born to be Bad (2023.06) </p>
+        </div>
+                <div class="card">
+          <div class="video-wrapper" onclick="openModal(this)">
+            <video src="video11.mp4" poster="thumb11.jpg"></video>
+            <div class="play-button">▶</div>
+          </div>
+          <p class="title">The Nights of the City (2025.02) </p>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- Post -->
+    <div id="board" class="hidden">
+      <h2>Post</h2>
+      <p class="board-desc">
+       This is my first test website, which I made while learning vibe coding.<br>
+       I’d love to hear your thoughts—please leave a comment!<br>
+      </p>
+     <textarea id="postInput" placeholder="Write something..."></textarea>
+     <br>
+     <button class="submit" onclick="addPost()">Post</button>
+
+     <div id="postList" style="margin-top:18px;"></div>
+     <p class="post-footer">This is a space where Heather shares<br>
+     her little thoughs from everyday life.</p>
+    </div>
+
+<!-- 📝 Blog -->
+<div id="blog" class="hidden">
+  <h2>Blog</h2>
+     <p class="blog-desc">
+       This is a space where Heather shares<br>
+     her little thoughs from everyday life.
+      </p>
+  <input id="blogTitle" placeholder="Title"
+    style="width:320px; padding:10px; border-radius:10px; border:1px solid #ddd;"><br><br>
+
+  <textarea id="blogContent" placeholder="Write your content..."
+    style="width:320px; height:150px;"></textarea><br>
+
+  <button class="submit" onclick="addBlog()">Post</button>
+
+  <div id="blogList" style="margin-top:30px;"></div>
+</div>
+
+  </div>
+
+  <div id="modal" onclick="closeModal()"></div>
+
+  <script>
+    function showPage(page, btn) {
+      document.getElementById("concert").classList.add("hidden");
+      document.getElementById("gallery").classList.add("hidden");
+      document.getElementById("board").classList.add("hidden");
+      document.getElementById("blog").classList.add("hidden");
+
+      document.getElementById(page).classList.remove("hidden");
+
+      var buttons = document.querySelectorAll(".menu button");
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (page === "board") {
+      renderPosts();
+      }
+
+     if (page === "blog") {
+      renderBlogs();
+      }
+     }
+
+    function openModal(element) {
+
+      var videos = document.querySelectorAll("video");
+      videos.forEach(v => v.pause());
+
+      var modal = document.getElementById("modal");
+      modal.style.display = "flex";
+
+      var video = element.querySelector("video");
+
+      if (video) {
+        modal.innerHTML = "<video src='" + video.src + "' controls autoplay></video>";
+      } else {
+        modal.innerHTML = "<img src='" + element.src + "'>";
+      }
+    }
+
+function closeModal() {
+  var modal = document.getElementById("modal");
+  modal.style.display = "none";
+  modal.innerHTML = "";
+}
+
+function addPost() {
+
+  var input = document.getElementById("postInput");
+  var text = input.value;
+
+  if (text.trim() === "") {
+    alert("내용을 입력하세요");
+    return;
+  }
+
+  // 현재 시간 생성
+  var time = new Date().toLocaleString();
+
+  var post = {
+    text: text,
+    time: time
+  };
+
+  // 기존 데이터 가져오기
+  var posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  posts.unshift(post); // 최신 글 위로
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  input.value = "";
+
+  renderPosts();
+}
+
+function renderPosts() {
+
+  var postList = document.getElementById("postList");
+  postList.innerHTML = "";
+
+  var posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  posts.forEach((post, index) => {
+
+    var div = document.createElement("div");
+
+    div.style.background = "white";
+    div.style.padding = "15px";
+    div.style.margin = "10px auto";
+    div.style.width = "320px";
+    div.style.borderRadius = "10px";
+    div.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+    div.style.position = "relative";
+
+    div.innerHTML = `
+      <div style="font-size:14px;">${post.text}</div>
+      <div style="font-size:11px; color:#888; margin-top:5px;">
+        ${post.time}
+      </div>
+      <button onclick="deletePost(${index})"
+        style="position:absolute; top:10px; right:10px; border:none; background:none; cursor:pointer;">
+        ❌
+      </button>
+    `;
+
+    postList.appendChild(div);
+  });
+}
+
+function deletePost(index) {
+
+  var posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  posts.splice(index, 1);
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  renderPosts();
+}
+
+function addBlog() {
+
+  var title = document.getElementById("blogTitle").value;
+  var content = document.getElementById("blogContent").value;
+
+  if (title.trim() === "" || content.trim() === "") {
+    alert("제목과 내용을 입력하세요");
+    return;
+  }
+
+  var blog = {
+    title: title,
+    content: content,
+    time: new Date().toLocaleString()
+  };
+
+  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+  blogs.unshift(blog);
+
+  localStorage.setItem("blogs", JSON.stringify(blogs));
+
+  document.getElementById("blogTitle").value = "";
+  document.getElementById("blogContent").value = "";
+
+  renderBlogs();
+}
+
+function renderBlogs() {
+
+  var blogList = document.getElementById("blogList");
+  blogList.innerHTML = "";
+
+  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+  blogs.forEach((blog, index) => {
+
+    var div = document.createElement("div");
+
+    div.style.background = "white";
+    div.style.padding = "15px";
+    div.style.margin = "15px auto";
+    div.style.width = "350px";
+    div.style.borderRadius = "12px";
+    div.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+    div.style.position = "relative";
+
+    div.innerHTML = `
+      <div style="font-weight:bold;">${blog.title}</div>
+      <div style="margin-top:8px;">${blog.content}</div>
+      <div style="font-size:11px; color:#888; margin-top:10px;">
+        ${blog.time}
+      </div>
+      <button onclick="deleteBlog(${index})"
+        style="position:absolute; top:10px; right:10px; border:none; background:none; cursor:pointer;">
+        ❌
+      </button>
+    `;
+
+    blogList.appendChild(div);
+  });
+}
+
+function deleteBlog(index) {
+
+  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+  blogs.splice(index, 1);
+
+  localStorage.setItem("blogs", JSON.stringify(blogs));
+
+  renderBlogs();
+}
+
+window.onload = function() {
+  renderPosts();
+  renderBlogs();
+}
+
+
+
+  </script>
+
+</body>
+</html>
