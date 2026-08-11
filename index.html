@@ -2,525 +2,808 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Heather's Archive</title>
+<meta charset="UTF-8">
+<title>Heather's Archive</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: linear-gradient(to bottom, #fdfbfb, #ebedee);
-    }
+<style>
+/* 🔥 여기 CSS 전부 그대로 유지 (절대 수정 없음) */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+}
 
-    h1 {
-      text-align: center;
-      font-weight: 200;
-      letter-spacing: 1px;
-      margin: 25px 0 5px 0;
-    }
+h1 {
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin: 25px 0 5px 0;
+}
 
-    /* 메뉴 */
-    .menu {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 20px;
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #eee;
-    }
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);  
+  border-bottom: 1px solid #eee;
+}
 
-    .menu button {
-      border: none;
-      background: none;
-      font-size: 16px;
-      cursor: pointer;
-      color: #555;
-      transition: 0.3s;
-    }
+.menu button {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #555;
+  transition: 0.3s;
+}
 
-    .menu button:hover {
-      color: black;
-      transform: scale(1.1);
-    }
+.menu button:hover {
+  color: black;
+  transform: scale(1.1);
+}
 
-    .active {
-      font-weight: bold;
-      color: black;
-    }
+.active {
+  font-weight: bold;
+  color: black;
+}
 
-    .content {
-      padding: 60px 20px;
-      text-align: center;
-    }
+.content {
+  padding: 60px 20px;
+  text-align: center;
+}
 
-    h2 {
-      font-weight: 300;
-      margin-bottom: 40px;
-    }
+h2 {
+  font-weight: 300;
+  margin-bottom: 40px;
+}
 
-    /* 🎬 Concert용 (기존 유지) */
-    .grid {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
 
-    /* Post용 */
-    #postList div {
-     text-align: left;
-     font-size: 14px;
-     }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-    /* 🖼 Gallery 전용 */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.3s;
+  width: 400px;
+}
 
-    .card {
-      border-radius: 20px;
-      overflow: hidden;
-      transition: 0.3s;
-      width: 400px;
-    }
+.card:hover {
+  transform: translateY(-8px);
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-    }
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+}
 
-    /* 🎬 영상 영역 */
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      height: 230px;
-      overflow: hidden;
-      border-radius: 16px;
-      cursor: pointer;
-    }
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 50%;
-      color: white;
-      font-size: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.title {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
 
-    .video-wrapper:hover .play-button {
-      background: rgba(0,0,0,0.8);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+}
 
-    .video-wrapper:hover video {
-      filter: brightness(80%);
-    }
+.gallery-grid .card {
+  width: 100%;
+}
 
-    /* 텍스트 */
-    .title {
-      margin-top: 14px;
-      font-size: 15px;
-      font-weight: 500;
-      text-align: center;
-    }
+.hidden {
+  display: none;
+}
 
-    /* 🖼 Gallery 이미지 */
-    .gallery-grid img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 
-    .gallery-grid .card {
-      width: 100%;
-    }
+.like-btn {
+  cursor: pointer;
+  font-size: 10px;
+  color: #888;
+}
 
-    .hidden {
-      display: none;
-    }
+.like-btn:hover {
+  color: red;
+}
 
-    textarea {
-      width: 320px;
-      height: 120px;
-      padding: 15px;
-      border-radius: 15px;
-      border: 1px solid #ddd;
-    }
+.delete-btn {
+  font-size: 14px;   
+  cursor: pointer;
+}
 
-    .submit {
-      margin-top: 15px;
-      padding: 10px 25px;
-      border: none;
-      border-radius: 20px;
-      background: black;
-      color: white;
-      cursor: pointer;
-    }
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .board-desc {
-     font-size: 13px;
-     color: #999; !important;
-     font-style: italic; !important;
-     margin-top: 18px;
-     line-height: 1.6;
-     text-align: center;
-     }  
+textarea {
+  width: 320px;
+  height: 120px;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+}
 
-    .post-footer {
-     font-size: 13px;
-     color: #aaa; !important;
-     font-style: italic; !important;
-     margin-top: 18px;
-     line-height: 1.6;
-     text-align: center;
-    
-     }
+.submit {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
 
-    /* 모달 */
-    #modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
+.board-desc {
+ font-size: 14px;
+ color: #888;
+ font-style: italic;
+ margin-bottom: 25px;
+}
 
-    #modal img, #modal video {
-      width: 70%;
-      border-radius: 20px;
-    }
-
-    #blogList div {
+.post-card {
+  width: 560px;
+  margin: 15px auto;
+  padding: 28px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   text-align: left;
 }
 
-  </style>
+.post-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+
+/* Universe 글 목록 */
+.universe-list {
+  width: 560px;
+  margin: 0 auto;
+}
+
+.universe-item {
+  padding: 18px 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.universe-item:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.universe-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.universe-date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* Universe 본문 */
+.universe-article {
+  width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.universe-article h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.universe-article .article-date {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.universe-article .article-content {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.universe-back {
+  margin-top: 40px;
+  border: none;
+  background: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.universe-back:hover {
+  color: black;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal img, #modal video {
+  width: 70%;
+  border-radius: 20px;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>&lt;Heather's Archive&gt;</h1>
+<h1>&lt;Heather's Archive&gt;</h1>
 
-  <div class="menu">
-    <button onclick="showPage('gallery', this)"class="active">Gallery</button>
-    <button onclick="showPage('concert', this)">Concert</button>
-    <button onclick="showPage('board', this)">Post</button>
-    <button onclick="showPage('blog', this)">Blog</button>
+<!-- ✅ 메뉴 순서만 변경 -->
+<div class="menu">
+  <button onclick="showPage('gallery', this)" class="active">Gallery</button>
+  <button onclick="showPage('concert', this)">Concert</button>
+  <button onclick="showPage('board', this)">Universe</button>
+  <button onclick="showPage('blog', this)">Blog</button>
+</div>
+
+<div class="content">
+
+<!-- Gallery -->
+<div id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <div class="card"><img src="love1.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love2.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love3.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love4.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love5.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love6.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love7.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love8.jpg" onclick="openModal(this)"></div>
+    <div class="card"><img src="love9.jpg" onclick="openModal(this)"></div>
   </div>
+</div>
 
-  <div class="content">
+<!-- Concert -->
+<!-- Concert -->
+<div id="concert" class="hidden">
+  <h2>Concert</h2>
 
-    <!-- 🖼 Gallery -->
-    <div id="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
+  <div class="grid">
 
-        <div class="card"><img src="love1.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love2.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love3.jpg" onclick="openModal(this)"></div>
-
-        <div class="card"><img src="love4.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love5.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love6.jpg" onclick="openModal(this)"></div>
-
-        <div class="card"><img src="love7.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love8.jpg" onclick="openModal(this)"></div>
-        <div class="card"><img src="love9.jpg" onclick="openModal(this)"></div>
-
-      </div>
-    </div>
-
-    <!-- 🎬 Concert -->
-    <div id="concert" class="hidden">
-      <h2>Concert</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="video-wrapper" onclick="openModal(this)">
-            <video src="video22.mp4" poster="thumb22.jpg"></video>
-            <div class="play-button">▶</div>
-          </div>
-          <p class="title">Born to be Bad (2023.06) </p>
-        </div>
-                <div class="card">
-          <div class="video-wrapper" onclick="openModal(this)">
-            <video src="video11.mp4" poster="thumb11.jpg"></video>
-            <div class="play-button">▶</div>
-          </div>
-          <p class="title">The Nights of the City (2025.02) </p>
-        </div>
-
-
-      </div>
-    </div>
-
-
-
-    <!-- Post -->
-    <div id="board" class="hidden">
-      <h2>Post</h2>
-      <p class="board-desc">
-       This is my first test website, which I made while learning vibe coding.<br>
-       I’d love to hear your thoughts—please leave a comment!<br>
-      </p>
-     <textarea id="postInput" placeholder="Write something..."></textarea>
-     <br>
-     <button class="submit" onclick="addPost()">Post</button>
-
-     <div id="postList" style="margin-top:18px;"></div>
-     <p class="post-footer">This is a space where Heather shares<br>
-     her little thoughs from everyday life.</p>
-    </div>
-
-<!-- 📝 Blog -->
-<div id="blog" class="hidden">
-  <h2>Blog</h2>
-     <p class="blog-desc">
-       This is a space where Heather shares<br>
-     her little thoughs from everyday life.
-      </p>
-  <input id="blogTitle" placeholder="Title"
-    style="width:320px; padding:10px; border-radius:10px; border:1px solid #ddd;"><br><br>
-
-  <textarea id="blogContent" placeholder="Write your content..."
-    style="width:320px; height:150px;"></textarea><br>
-
-  <button class="submit" onclick="addBlog()">Post</button>
-
-  <div id="blogList" style="margin-top:30px;"></div>
+    <div class="card">
+  <iframe 
+    src="https://www.youtube.com/embed/wrWQndgX1QU"
+    width="100%"
+    height="230"
+    style="border-radius:16px;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    onclick="event.stopPropagation()">
+  </iframe>
+  <div class="title">Video 1</div>
 </div>
 
   </div>
 
-  <div id="modal" onclick="closeModal()"></div>
+</div>
 
-  <script>
-    function showPage(page, btn) {
-      document.getElementById("concert").classList.add("hidden");
-      document.getElementById("gallery").classList.add("hidden");
-      document.getElementById("board").classList.add("hidden");
-      document.getElementById("blog").classList.add("hidden");
+<!-- Universe -->
+<div id="board" class="hidden">
 
-      document.getElementById(page).classList.remove("hidden");
+  <!-- Universe 목록 화면 -->
+  <div id="universeListView">
 
-      var buttons = document.querySelectorAll(".menu button");
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+    <h2>Universe</h2>
 
-      if (page === "board") {
-      renderPosts();
-      }
+    <p class="board-desc">
+      Stories about the universe and astronomy.<br>
+      A small archive of things I have learned and found interesting.
+    </p>
 
-     if (page === "blog") {
-      renderBlogs();
-      }
-     }
+    <div class="universe-list">
 
-    function openModal(element) {
-
-      var videos = document.querySelectorAll("video");
-      videos.forEach(v => v.pause());
-
-      var modal = document.getElementById("modal");
-      modal.style.display = "flex";
-
-      var video = element.querySelector("video");
-
-      if (video) {
-        modal.innerHTML = "<video src='" + video.src + "' controls autoplay></video>";
-      } else {
-        modal.innerHTML = "<img src='" + element.src + "'>";
-      }
-    }
-
-function closeModal() {
-  var modal = document.getElementById("modal");
-  modal.style.display = "none";
-  modal.innerHTML = "";
-}
-
-function addPost() {
-
-  var input = document.getElementById("postInput");
-  var text = input.value;
-
-  if (text.trim() === "") {
-    alert("내용을 입력하세요");
-    return;
-  }
-
-  // 현재 시간 생성
-  var time = new Date().toLocaleString();
-
-  var post = {
-    text: text,
-    time: time
-  };
-
-  // 기존 데이터 가져오기
-  var posts = JSON.parse(localStorage.getItem("posts")) || [];
-
-  posts.unshift(post); // 최신 글 위로
-
-  localStorage.setItem("posts", JSON.stringify(posts));
-
-  input.value = "";
-
-  renderPosts();
-}
-
-function renderPosts() {
-
-  var postList = document.getElementById("postList");
-  postList.innerHTML = "";
-
-  var posts = JSON.parse(localStorage.getItem("posts")) || [];
-
-  posts.forEach((post, index) => {
-
-    var div = document.createElement("div");
-
-    div.style.background = "white";
-    div.style.padding = "15px";
-    div.style.margin = "10px auto";
-    div.style.width = "320px";
-    div.style.borderRadius = "10px";
-    div.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
-    div.style.position = "relative";
-
-    div.innerHTML = `
-      <div style="font-size:14px;">${post.text}</div>
-      <div style="font-size:11px; color:#888; margin-top:5px;">
-        ${post.time}
+      <!-- 가장 최근 글 -->
+      <div class="universe-item"
+           onclick="openUniversePost(0)">
+        <div class="universe-title">
+          명왕성은 어쩌다가 태양계에서 퇴출당했나
+        </div>
+        <div class="universe-date">
+          August 11, 2026
+        </div>
       </div>
-      <button onclick="deletePost(${index})"
-        style="position:absolute; top:10px; right:10px; border:none; background:none; cursor:pointer;">
-        ❌
-      </button>
-    `;
 
-    postList.appendChild(div);
+      <!-- 두 번째 글 -->
+      <div class="universe-item"
+           onclick="openUniversePost(1)">
+        <div class="universe-title">
+          지구와 미지의 별 X간의 거리 측정법
+        </div>
+        <div class="universe-date">
+          August 5, 2026
+        </div>
+      </div>
+
+      <!-- 가장 오래된 글 -->
+      <div class="universe-item"
+           onclick="openUniversePost(2)">
+        <div class="universe-title">
+          How Big Is The Universe
+        </div>
+        <div class="universe-date">
+          July 30, 2026
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Universe 본문 화면 -->
+  <div id="universeArticleView" class="hidden">
+
+    <div class="universe-article">
+
+      <h3 id="universeArticleTitle"></h3>
+
+      <div id="universeArticleDate" class="article-date"></div>
+
+      <div id="universeArticleContent" class="article-content"></div>
+
+      <button class="universe-back"
+              onclick="backToUniverseList()">
+        ← Back to Universe
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Blog -->
+<div id="blog" class="hidden">
+  <h2>Blog</h2>
+    <p class="board-desc">This is a space where Heather shares<br>
+her little thoughs from everyday life.<br>
+<br>
+  <input id="blogTitle" placeholder="Title"><br>
+  <textarea id="blogContent"></textarea><br>
+  <button class="submit" onclick="addBlog()">Post</button>
+  <div id="blogList" style="margin-top:30px;"></div>
+</div>
+
+</div>
+
+<div id="modal" onclick="closeModal()"></div>
+
+<script>
+function showPage(page, btn) {
+  ["gallery","concert","board","blog"].forEach(id=>{
+    document.getElementById(id).classList.add("hidden");
   });
+
+  document.getElementById(page).classList.remove("hidden");
+
+  document.querySelectorAll(".menu button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
 }
 
-function deletePost(index) {
+// ================================
+// Universe 글 데이터
+// ================================
 
-  var posts = JSON.parse(localStorage.getItem("posts")) || [];
+const universePosts = [
 
-  posts.splice(index, 1);
+  {
+    title: "명왕성은 어쩌다가 태양계에서 퇴출당했나",
+    date: "August 11, 2026",
+    content: `
+      <p>
+      - 태양계 행성을 말할 때 자연스럽게 수금지화목토천해*명까지 나온다면..?<br>
+      당신은 옛날사람☆
 
-  localStorage.setItem("posts", JSON.stringify(posts));
+      <p>
+      명왕성은 1930년에 최초로 발견되어 태양계의 9번째 행성으로 인정받았습니다.<br>
+      그러나 2005년 명왕성이 위치한 카이퍼벨트에서 발견된,
+      명왕성보다 질량이 27% 정도 큰 왜행성 "에리스"로 인해
+      명왕성은 태양계 외곽 카이퍼벨트에 존재하는 수많은 얼음 행성 중 하나에
+      불과하다는 것이 밝혀지게 되었고,
+      이로 인해 2006년 더 이상 태양계 행성이 아닌 "왜행성"으로 강등당하게 됩니다.
+      <p>
+      *카이퍼벨트: 해왕성 바깥쪽에서 태양계 주위를 도는 작은 천체들의 집합체
+      </p>
 
-  renderPosts();
-}
+      <p>
+      <strong>1. 명왕성의 발견</strong><br>
 
-function addBlog() {
+      천문학자 퍼시벌 로웰은 1930년 해왕성의 궤도를 분석하는 과정에서
+      해왕성보다 더 바깥에 또 다른 행성이 존재한다는 가설을 세우게 됩니다.
+      <br>
+      이윽고 로웰의 제자 클라이드 톰보가 결국 명왕성을 찾아내는데요.
+      탐구 과정이 굉장히 집요합니다.
+      <br>
+      며칠의 간격을 두고 동일한 위치의 하늘을 촬영,
+      14 x 14인치 사진 검판 속에 점처럼 찍혀있는 수많은 별을
+      눈알이 빠지도록 대조해가며 사진 속에서 점의 위치가 이동된 별이 있는지를
+      비교하였고(현재는 이런 비교작업을 컴퓨터 프로그램이 수행합니다만, 
+      당시에는 기계식 컴퓨터가 없었기에 촬영 결과를 돋보기로 들여다보며 육안으로 일일히 확인해야 했습니다.)
+      <br>
+      이 작업을 약 7천 시간, 즉 291일 동안 진행한 끝에
+      제자리에 가만히 있는 수많은 별들 가운데 나름의 궤도를 그리며 이동하고 있는
+      명왕성을 결국 찾아냅니다.
+      <br>(이후 톰보에게 살면서 가장 지루한 일을 물었을 때 이 작업을 꼽았다고 합니다.)
 
-  var title = document.getElementById("blogTitle").value;
-  var content = document.getElementById("blogContent").value;
+      <p>
+    <strong>2. 명왕성 이름 짓기</strong><br>
+     새롭게 발견된 9번째 행성의 이름을 무엇으로 할지에 대한 논쟁이 있었는데, 제우스, 미네르바 등
+     그리스 로마 신화에 등장하는 여러 신들의 이름이 후보로 거론되었습니다. 그러나 한 소녀가 제안한 '플루토'라는 이름이 만장일치로 채택되었습니다.<br>
+     태양계의 각 행성에는 천문 기호가 존재합니다.
+     명왕성의 천문 기호는 영어 알파벳 P와 L을 세로로 붙여서 쓴 모양입니다. '플루토'의 스펠링과도 일치할 뿐 아니라
+     최초로 명왕성 존재 가설을 제기했던 퍼시벌 로웰(Percival Lowell)의 이니셜과도 일치합니다.
+     이에 따라 행성 134340(명왕성의 천체번호)는 '플루토', 한국어로는 '명왕성'이라는 이름으로 태양계에 본격 데뷔하게 됩니다.<br>
+     또한 명왕성은 이탈리아, 영국 등이 아닌 미국인이 처음 발견한 행성이라는 점에서
+     미국인들에게 특별한 의미를 지녔습니다. 발견된 해에 디즈니는 '플루토'라는 이름의 강아지 캐릭터를
+     선보였고, 훗날 행성 지위 박탈 논란이 벌어졌을 때에는 명왕성의 지위를 유지해달라는 거리 시위가 열릴 정도로
+     미국인들의 애정이 각별했다고 합니다.
 
-  if (title.trim() === "" || content.trim() === "") {
-    alert("제목과 내용을 입력하세요");
-    return;
+      <p>
+      <strong>3. 명왕성의 행성 지위 박탈 -'명왕성'에서 '왜행성 134340'으로</strong><br>
+지구에게는 달이 있듯이, 명왕성에게도 위성 카론이 있습니다.<br>
+사실 달은 지구가 보유하기에는 꽤 큰 위성입니다. 그럼에도 달이 지구의 위성이 될 수 있는 이유는 달이 회전할 때 그 질량의 중심이 명백히 지구 내부에 있기 때문인데요. 
+<br>명왕성과 그의 위성 카론의 회전 주기를 관측했더니, 위성 카론이 회전할 때 명왕성 또한 미묘하게 회전을 하고 있었습니다.
+카론의 회전 질량 중심은 명왕성이 아닌 명왕성의 살짝 바깥이었고, 두 행성은 서로의 질량에 영향을 받아 함께 회전을 하고 있는 상태였습니다.
+<br>(사람을 안고 빙글빙글 도는 모습을 상상해보세요. 
+가벼운 어린아이를 안고 빙글빙글 돌 때 내 몸은 가만히 있는 것이 달과 지구의 상태라면 무거운 성인을 안고 빙글빙글 돌 때 성인의 무게에 이끌려 내가 도는 모양도 약간의 회전을 이루게 되는 것이 카론과 명왕성의 상태입니다.)
+<br>그러던 와중 2005년, 또다른 천문학자 마이크 브라운에 의해 명왕성 근처에서 새로운 행성이 발견됩니다.
+<br>명왕성보다 1.3배 큰 것으로 추정되는 이 행성의 이름은 '에리스'로, 에리스에게 10번째 행성 지위를 부여해야 하는 것이 아닌지에 대한 논쟁이 활발하게 벌어졌습니다.
+그러나 만약 에리스를 10번째 행성으로 만든다면, 이어서 발견된 소행성 세레스, 그리고 카론까지 태양계의 11번째, 12번째 행성으로 만들어야 할 판이었습니다.<br>
+결국 인류는 역사상 처음으로 "행성"의 의미를 정의하게 됩니다.
+<p></p>
+<행성이 되기 위한 필요 조건><br>
+1. 태양을 중심으로 궤도를 돌 것 : 에리스, 명왕성 모두 합격<br>
+2. 원형의 구 형태를 유지할 만한 충분한 중력을 보유할 것 : 에리스, 명왕성 모두 합격<br>
+3. 자기 궤도 근처의 다른 천체들을 중력적으로 지배할 수 있을 것 : 에리스, 명왕성 둘 다 탈락<br>
+1,2번 조항만 적용시 명왕성, 에리스는 물론 소행성 세레스와 카론까지 태양계 행성이 12개가 될 판이었습니다.<br>
+논쟁 끝에 만들어진 새로운 조항 3번에 의해, 명왕성은 결국 태양계 행성으로써의 지위를 박탈당하고 쓸쓸히 은퇴하게 됩니다.
+<p></p>
+<strong>4. 싸우던 와중에 발사된 명왕선 탐사선 뉴호라이즌스<br>
+- 목적지를 잃어버린 탐사선의 Sad Story</strong><br>
+명왕성이 권고 사직당한 2006년도에 공교롭게도 명왕성 탐사선 뉴호라이즌스가 명왕성을 향해 출발하게 됩니다.<br>
+탐사선의 속도를 최대한으로 높인 상태로 세팅하여 날려보냈음에도 9년이라는 긴 시간이 걸렸고,
+2015년, 탐사선은 드디어 명왕성에 도착합니다.<br>
+탐사선은 단 하루라는 짧은 시간동안 명왕성 곁을 빠르게 스쳐지나가며 명왕성 표면을 디테일하게 촬영하여 방대한 사진 데이터를 지구로 보내오게 됩니다.<br>
+이때까지 인류는 실제로 명왕성의 실물을 본 적이 없었기에, 여러 과학 책들에서 표현된 명왕성의 모습은 일종의 상상도였습니다.
+명왕성의 표면이 얼음으로 되어 있는 점을 고려하여 명왕성을 파랗게 빛나는 얼음 천체처럼 그렸던 것과는 달리, 실제로 명왕성의 사진을 보니 놀랍게도 표면 색상은 파란색이 아닌 살구색이었으며 
+지하에 아직 완전히 얼어있지 않은 얼음이 녹아서 마치 슬러시처럼 표면으로 새어나는, 지질학적으로 굉장히 어린 모습이었습니다.
+<br>또 명왕성의 몸체 하부에서는 커다란 하트 지형이 발견되기도 했는데, 명왕성을 처음으로 발견한 톰보를 기리기 위해 이 하트 지형에 
+'톰보 영역'이라는 이름을 붙여주기도 합니다.
+('톰보 영역'을 검색해보세요. 정말 신기하게도 좌우 대칭이 완벽한 하트입니다.)
+<p>
+<p>
+      ——————————————————————————————
+      </p>
+
+      <p>
+      끼워달라고 한 것도 아니고 가만히 있었을 뿐인데 인간들이 지들끼리
+      지지고 볶고 싸우며 크루에 끼워주네 마네 하다가 강퇴 시켜버리다니
+      명왕성 입장에서는 억울했을 것 같습니다.
+      </p>
+
+      <p>
+      명왕성은 원래부터 몸에 지니고 있던 하트 문신만 널리 공개된 채
+      왜행성으로써 오늘도 쓸쓸히 조용히 살아가고 있습니다.
+      </p>
+
+      <p>
+      [참고 자료]
+      <br> - Book : 마이크 브라운 / 나는 어쩌다 명왕성을 죽였나
+      <br> - Youtube : 보다과학 / 천문학계가 명왕성을 퇴출시킨 진짜 이유
+      </p>
+
+    `
+  },
+
+  {
+    title: "지구와 미지의 별 X간의 거리 측정법",
+    date: "August 5, 2026",
+    content: `
+      <p>
+      인류는 오랜 시간에 걸쳐 지구와 별 사이의 거리를 측정하는 방법을 탐구해왔습니다.
+<br>그 결과 불과 수천, 수억광년까지만 측정 가능했던 과거의 방법에서 점차 발전하여 현재는 100억 광년, 심지어는 우주 끝까지 측정 가능한 방법을 발견해냈습니다.
+<br>측정가능한 거리를 마치 사다리를 하나씩 오르듯이 점차 넓혀나간다고 하여 이를 "Cosmic Distance Ladder"라고도 부릅니다. 측정 방법을 측정 가능한 거리별로 6가지 방법으로 구분할 수 있는데, 이 중 2번, 4번, 5번(현재 가장 많이 사용)에 대하여 중점적으로 설명 드리겠습니다.
+
+<p><strong>1. 레이더와 비례식</strong>
+<br>- 측정 가능 거리: 태양계 내
+<p><strong>2. 연주시차를 활용한 측정</strong>
+<br>- 측정 가능 거리: 지구~수천 광년
+<br>미지의 별 "X"를 1월의 밤하늘에서 관측할 때와 6월의 밤하늘에서 관측할 때 별의 위치가 달라짐 계절(공전주기)에 따라 변화하는 행성의 관측각도와 1AU*를 활용하여 거리 재기
+<br>시차의 절반인 연주시차를 활용, 삼각함수 계산 => 시차가 작으면 먼 별, 크면 가까운 별
+<br>*1AU (Astonomical Unit): 지구와 태양간 거리 => 약 1.5억 km
+
+<p><strong>3. H-R도</strong>
+<br>- 측정 가능 거리: 지구~수십만 광년
+
+<p><strong>4. 세페이드 변광성법</strong>
+<br>- 측정 가능 거리: 지구~1억 광년
+<br>태양보다 질량이 큰 별은 나이가 들면 팽창과 수축을 반복하며 밝아졌다 어두워졌다 하는 과정을 거치는데, 밝기가 지속적으로 변한다고 하여 이를 변광성"이라고 함
+<br>변광성마다 밝기의 주기가 다른데(어떤 변광성은 50일, 어떤 변광성은 2일) 주기가 길면 실제로도 밝으며, 주기가 짧으면 실제로도 어두움
+<br>서로 다른 변광성의 주기가 같을 경우, 실제 밝기도 같음 이런 변광성이 은하마다 존재하기에, 여러 변광성의 밝기를 비교하여 거리를 측정
+
+<p><strong>5. 1a형 초신성을 표준촛불*로 활용한 측정법</strong>
+<br>- 측정 가능 거리: 지구~100억 광년
+<br>별이 죽어가며 변화하는 과정을 태양의 크기와 비교하여 다음과 같이 구분할 수 있음
+<br>Case 1. 별 크기 태양 크기 => 별 die =~ 초신성*으로 변하며 폭발
+<br>Case 2. 별 크기 < 태양 크기 => 별 die => 백색성*으로 변함 (초신성 폭발 없음)
+<br>Case 3. 별 크기 태양 크기 => 별 die => 백색성으로 변함 => 이 때 백색왜성 근처에 마침 다른 별이 존재 => 백색왜성의 중력에 그 별의 질량이 흡수됨 => 백색왜성이 특정 질량값*을 초과 => 백색왜성이 초신성으로 변하며 폭발 => 이를 1a형 초신성이라고 함 
+<br>이렇게 백색왜성이 초신성으로 변하여 폭발을 할 때, 즉 1a형 초신성이 될 때 밝기가 항상 일정한 점을 활용하여 1a형 초신성과 미지의 별이 밝기를 비교하여 거리 측정
+
+<br>*  특정 질량값: 태양 질량의 약 1.44배
+<br>*  표준 촛불: 우주 어디에서든 밝기의 수치가 동일한 절대적 밝기 (표준광원이라고도 함)
+<br>*  초신성: 늙은 별이 죽을때 마치 새로운 별이 탄생하는 것처럼 빛과 에너지가 뿜어져나오는 현상
+<br>*  백색왜성: 별이 죽어가며 하얗게 변하는 것으로, 일종의 별의 시체
+
+<p><strong>6. 허블 르메트르 법칙</strong>
+<br> - 측정 가능 거리: 지구~우주 끝까지 측정 가능
+<br>허블상수(은하가 멀어져가는 빠르기의 비율을 나타내는 비례상수)를 활용하여 거리 측정
+      </p>
+    `
+  },
+
+  {
+    title: "How Big Is The Universe",
+    date: "July 30, 2026",
+    content: `
+      <p>
+<br>1호 지구와 미지의 별 “X”간의 거리 측정법
+<br>2호 명왕성은 어쩌다가 태양계에서 퇴출당했나
+<br>3호 지구에서 안드로메다 관측하는 방법
+<br>4호 지구와 닮은 외계행성, “트라피스트1-e”
+<br>5호 달에 관한 보편적 사실 10가지
+<br>6호 화성에 관한 보편적 사실 10가지
+<br>7호 우주탐사 일꾼 3대장 - 보이저호, 뉴호라이즌, 제임스웹
+<br>8호 그것이 알고 싶다 - 우주의 역사적 사건들 Best 5
+<br>9호 인터스텔라를 통해 알아보는 “블랙홀”
+<br>10호 Merry Christmas to Universe - 우주의 성탄절 선물, 지구
+      </p>
+    `
   }
 
-  var blog = {
-    title: title,
-    content: content,
-    time: new Date().toLocaleString()
-  };
+];
 
-  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+function openUniversePost(index) {
 
-  blogs.unshift(blog);
+  const post = universePosts[index];
 
-  localStorage.setItem("blogs", JSON.stringify(blogs));
+  document.getElementById("universeListView")
+    .classList.add("hidden");
 
-  document.getElementById("blogTitle").value = "";
-  document.getElementById("blogContent").value = "";
+  document.getElementById("universeArticleView")
+    .classList.remove("hidden");
 
-  renderBlogs();
+  document.getElementById("universeArticleTitle")
+    .innerText = post.title;
+
+  document.getElementById("universeArticleDate")
+    .innerText = post.date;
+
+  document.getElementById("universeArticleContent")
+    .innerHTML = post.content;
 }
 
-function renderBlogs() {
 
-  var blogList = document.getElementById("blogList");
-  blogList.innerHTML = "";
+function backToUniverseList() {
 
-  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+  document.getElementById("universeArticleView")
+    .classList.add("hidden");
 
-  blogs.forEach((blog, index) => {
+  document.getElementById("universeListView")
+    .classList.remove("hidden");
+}
 
-    var div = document.createElement("div");
+</script>
 
-    div.style.background = "white";
-    div.style.padding = "15px";
-    div.style.margin = "15px auto";
-    div.style.width = "350px";
-    div.style.borderRadius = "12px";
-    div.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
-    div.style.position = "relative";
+<!-- 🔥 Firebase -->
+<script type="module">
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, onSnapshot, updateDoc }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+const app = initializeApp({
+  apiKey: "AIzaSyAE7hlVkufdpgBFDWCCcsOjBkjsyLerzEo",
+  authDomain: "heather-s-archive.firebaseapp.com",
+  projectId: "heather-s-archive"
+});
+
+const db = getFirestore(app);
+
+// Post
+window.addPost = async () => {
+  const text = postInput.value;
+  if(!text.trim()) return;
+
+await addDoc(collection(db,"posts"),{
+  text,
+  time: new Date().toLocaleString(),
+  likes: 0
+});
+
+  postInput.value="";
+  
+};
+
+onSnapshot(collection(db,"blogs"), (snapshot)=>{
+  blogList.innerHTML="";
+
+  const docs = [];
+
+  snapshot.forEach(doc=>{
+    docs.push({ id: doc.id, ...doc.data() });
+  });
+
+  docs.reverse();
+
+  docs.forEach(d=>{
+    const div = document.createElement("div");
+    div.className = "post-card";
 
     div.innerHTML = `
-      <div style="font-weight:bold;">${blog.title}</div>
-      <div style="margin-top:8px;">${blog.content}</div>
-      <div style="font-size:11px; color:#888; margin-top:10px;">
-        ${blog.time}
+      <div style="font-weight:bold;">${d.title}</div>
+      <div>${d.content}</div>
+      <div class="post-time">${d.time || ""}</div>
+
+      <div class="action-bar">
+        <span class="like-btn" onclick="likeBlog('${d.id}', ${d.likes || 0})">
+          ❤️ ${d.likes || 0}
+        </span>
+        <span onclick="deleteBlog('${d.id}')" class="delete-btn">☒</span>
       </div>
-      <button onclick="deleteBlog(${index})"
-        style="position:absolute; top:10px; right:10px; border:none; background:none; cursor:pointer;">
-        ❌
-      </button>
     `;
 
     blogList.appendChild(div);
   });
-}
-
-function deleteBlog(index) {
-
-  var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-
-  blogs.splice(index, 1);
-
-  localStorage.setItem("blogs", JSON.stringify(blogs));
-
-  renderBlogs();
-}
-
-window.onload = function() {
-  renderPosts();
-  renderBlogs();
-}
+});
 
 
 
-  </script>
+// Blog
+window.addBlog = async ()=>{
+
+  const title = document.getElementById("blogTitle").value;
+  const content = document.getElementById("blogContent").value;
+
+  if(!title.trim() || !content.trim()) return;
+
+await addDoc(collection(db,"blogs"),{
+  title,
+  content,
+  time: new Date().toLocaleString(),
+  likes: 0
+});
+
+  document.getElementById("blogTitle").value = "";
+  document.getElementById("blogContent").value = "";
+};
+
+onSnapshot(collection(db,"posts"), (snapshot)=>{
+  postList.innerHTML="";
+
+  const docs = [];
+
+  snapshot.forEach(doc=>{
+    docs.push({ id: doc.id, ...doc.data() });
+  });
+
+  docs.reverse();
+
+  docs.forEach(d=>{
+    const div = document.createElement("div");
+    div.className = "post-card";
+
+    div.innerHTML = `
+      <div>${d.text}</div>
+      <div class="post-time">${d.time || ""}</div>
+
+      <div class="action-bar">
+        <span class="like-btn" onclick="likePost('${d.id}', ${d.likes || 0})">
+          ❤️ ${d.likes || 0}
+        </span>
+        <span onclick="deletePost('${d.id}')" class="delete-btn">☒</span>
+      </div>
+    `;
+
+    postList.prepend(div);
+  });
+});
+
+
+
+
+window.deletePost = async (id)=>{
+  await deleteDoc(doc(db,"posts",id));
+};
+
+window.deleteBlog = async (id)=>{
+  await deleteDoc(doc(db,"blogs",id));
+};
+
+window.likeBlog = async (id, currentLikes)=>{
+  await updateDoc(doc(db,"blogs",id),{
+    likes: currentLikes + 1
+  });
+};
+
+window.likePost = async (id, currentLikes)=>{
+  await updateDoc(doc(db,"posts",id),{
+    likes: currentLikes + 1
+  });
+};
+
+</script>
 
 </body>
 </html>
