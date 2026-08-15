@@ -56,12 +56,13 @@ h1 {
 }
 
 .content {
-  padding: 60px 20px;
+  padding: 50px 20px;
   text-align: center;
 }
 
 h2 {
   font-weight: 300;
+  margin-top: 0;
   margin-bottom: 40px;
 }
 
@@ -205,7 +206,39 @@ textarea {
   font-size: 14px;
   color: #888;
   font-style: italic;
+  margin-top: 0px;
   margin-bottom: 25px;
+}
+
+/* ================================
+   Post 페이지
+================================ */
+
+#post {
+  text-align: center;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+#post h2 {
+  text-align: center;
+}
+
+#post .board-desc {
+  text-align: center;
+}
+
+#post textarea {
+  display: block;
+  width: 560px;
+  height: 120px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+#post .submit {
+  display: block;
+  margin: 15px auto 0;
 }
 
 .post-card {
@@ -224,6 +257,26 @@ textarea {
   color: #888;
   margin-top: 8px;
 }
+
+/* ================================
+   Universe 페이지 정렬
+================================ */
+
+#universe {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 0px;
+  text-align: center;
+}
+
+#universe h2 {
+  text-align: center;
+}
+
+#universe .board-desc {
+  text-align: center;
+}
+
 
 
 /* ================================
@@ -368,6 +421,274 @@ textarea {
 }
 
 /* ================================
+   Jazz Playlist
+================================ */
+
+.jazz-playlist {
+  width: 90%;
+  max-width: 1000px;
+  margin: 100px auto 80px;
+}
+
+.jazz-playlist-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.jazz-playlist-desc {
+  text-align: center;
+  font-size: 15px;
+  font-style: italic;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+
+/* Playlist Card */
+
+.jazz-card {
+  background: white;
+  border-radius: 22px;
+  padding: 20px 35px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.jazz-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* 번호 */
+
+.jazz-number {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+
+/* 곡 제목 */
+
+.jazz-song-title {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+
+/* 연도 */
+
+.jazz-year {
+  margin-bottom: 10px;
+}
+
+
+/* 곡 설명 */
+
+.jazz-description {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+
+/* YouTube 버튼 */
+
+.jazz-youtube {
+  display: inline-block;
+
+  padding: 10px 20px;
+
+  border-radius: 20px;
+
+  background: #111;
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition: opacity 0.2s ease;
+}
+
+.jazz-youtube:hover {
+  opacity: 0.7;
+}
+
+
+/* YouTube 영상 */
+
+.jazz-video {
+  width: 100%;
+  max-width: 700px;
+
+  aspect-ratio: 16 / 9;
+
+  border: none;
+  border-radius: 15px;
+
+  margin-top: 10px;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 700px) {
+
+  .jazz-playlist {
+    width: 88%;
+    margin-top: 30px;
+  }
+
+  .jazz-card {
+    padding: 20px;
+  }
+
+  .jazz-song-title {
+    font-size: 18px;
+  }
+
+  .jazz-description {
+    font-size: 15px;
+  }
+
+}
+
+/* ================================
+   Jazz Playlist Grid
+================================ */
+
+.jazz-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  align-items: start;
+}
+
+
+/* ================================
+   Jazz Card
+================================ */
+
+.jazz-card {
+  background: white;
+  border-radius: 22px;
+
+  width: 100%;
+  height: 250px;
+  box-sizing: border-box;
+
+  padding: 24px 35px;
+  margin: 0;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.jazz-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+/* ================================
+   Jazz 메인 콘텐츠
+================================ */
+
+.jazz-feature {
+  max-width: 1000px;
+  margin: 0 auto 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 60px;
+}
+
+
+/* 왼쪽 영상 */
+
+.jazz-feature-video {
+  width: 420px;
+  flex-shrink: 0;
+}
+
+
+/* YouTube 영상 */
+
+.jazz-feature-video iframe {
+  width: 100%;
+  height: 260px;
+
+  border: none;
+  border-radius: 16px;
+
+  display: block;
+}
+
+
+/* 영상 아래 연주자 설명 */
+
+.jazz-feature-caption {
+  margin-top: 14px;
+
+  font-size: 13px;
+  font-weight: 500;
+  font-style: italic;
+
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+/* 오른쪽 감상 */
+
+.jazz-feature-text {
+  flex: 1;
+
+  text-align: left;
+  font-style: italic;
+
+  color: #888;
+
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.jazz-feature-text p {
+  margin: 0;
+}
+
+
+/* 모바일에서는 한 줄에 하나 */
+
+@media (max-width: 700px) {
+
+  .jazz-card-container {
+    grid-template-columns: 1fr;
+
+    width: 90%;
+  }
+
+}
+
+/* ================================
    Modal
 ================================ */
 
@@ -407,6 +728,7 @@ textarea {
   opacity: 0.7;
 }
 
+
 </style>
 </head>
 
@@ -430,15 +752,15 @@ textarea {
     Gallery
   </button>
 
-  <button onclick="showPage('concert', this)">
+  <button onclick="showPage('jazz', this)">
     Jazz
   </button>
 
-  <button onclick="showPage('board', this)">
+  <button onclick="showPage('universe', this)">
     Universe
   </button>
 
-  <button onclick="showPage('blog', this)">
+  <button onclick="showPage('post', this)">
     Post
   </button>
 
@@ -454,7 +776,7 @@ textarea {
 
 <div id="about">
 
-  <h2>Why I made this little archive</h2>
+  <h2>Why I made this little archive?</h2>
 
   <div class="about-content">
 
@@ -525,7 +847,7 @@ textarea {
 
 <div id="gallery" class="hidden">
 
-  <h2>Gallery</h2>
+  <h2>What moments stay with me?</h2>
 
   <div class="gallery-grid">
 
@@ -575,35 +897,350 @@ textarea {
      Jazz
 ================================ -->
 
-<div id="concert" class="hidden">
+<div id="jazz" class="hidden">
 
-  <h2>Bill Evans Trio - Emily(1969)</h2>
+  <h2>Why did I get into jazz?</h2>
 
-    <p class="board-desc">
-    One of my favorite Bill Evans performances.
-    <br>Gentle, melancholic, and beautifully balanced 
-    <br>between three musicians listening to one another.
-  </p>
 
-  <div class="grid">
 
-    <div class="card">
+   <div class="jazz-feature">
+
+    <!-- 왼쪽 : 영상 -->
+    <div class="jazz-feature-video">
 
       <iframe
         id="jazzVideo"
         src="https://www.youtube.com/embed/wrWQndgX1QU"
-        width="100%"
-        height="230"
-        style="border-radius:16px;"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        onclick="event.stopPropagation()">
+        allowfullscreen>
       </iframe>
 
-      <div class="title">
-        <p> Bill Evans(piano), Eddie Gomez(bass), Marty Morell(drums)
+      <div class="jazz-feature-caption">
+        Bill Evans Trio - Emily(1969)<br>
+        Bill Evans(piano), Eddie Gomez(bass), Marty Morell(drums)
       </div>
+
+    </div>
+
+
+    <!-- 오른쪽 : 감상 -->
+    <div class="jazz-feature-text">
+
+      <p>
+        One of my favorite Bill Evans performances.
+        <br>Gentle, melancholic, and beautifully balanced
+        <br>between three musicians listening to one another.
+      </p>
+
+    </div> <!-- 기존 .card 닫기 -->
+
+  </div> <!-- 기존 .grid 닫기 -->
+
+      <!-- ================================
+     Jazz Playlist
+    ================================ -->
+
+<section class="jazz-playlist">
+
+  <h2 class="jazz-playlist-title">
+    My Jazz Playlist. Ten pieces I keep coming back to.
+  </h2>
+
+
+
+  <div class="jazz-card-container">
+  <!-- 01 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">
+      01
+    </div>
+
+    <div class="jazz-song-title">
+      Bill Evans Trio — Emily
+    </div>
+
+    <div class="jazz-year">
+      1969
+    </div>
+
+    <div class="jazz-description">
+      One of my favorite Bill Evans performances.
+      Gentle, melancholic, and beautifully balanced
+      between three musicians listening to one another.
+    </div>
+
+    <!--
+      현재 사용하고 있는 Bill Evans 영상의
+      YouTube 링크를 여기에 넣습니다.
+    -->
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 02 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">02</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="https://youtu.be/wrWQndgX1QU"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 03 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">03</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 04 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">04</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 05 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">05</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 06 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">06</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 07 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">07</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 08 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">08</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 09 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">09</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+
+  <!-- 10 -->
+
+  <div class="jazz-card">
+
+    <div class="jazz-number">10</div>
+
+    <div class="jazz-song-title">
+      Artist — Song Title
+    </div>
+
+    <div class="jazz-year">
+      Year
+    </div>
+
+    <div class="jazz-description">
+      A short introduction to this piece.
+    </div>
+    
+    <a
+      class="jazz-youtube"
+      href="#"
+      target="_blank">
+      ▶ Listen on YouTube
+    </a>
+
+  </div>
+
+</div> <!-- ← jazz-card-container 닫기 -->
+
+</section>
 
     </div>
 
@@ -617,9 +1254,9 @@ textarea {
      Universe
 ================================ -->
 
-<div id="board" class="hidden">
+<div id="universe" class="hidden">
 
-  <h2>How Big Is The Universe</h2>
+  <h2>How big is the universe?</h2>
 
   <p class="board-desc">
     Every night sky tells a different story.<br>
@@ -674,12 +1311,12 @@ textarea {
 ================================ -->
 
 <!-- Post -->
-<div id="blog" class="hidden">
+<div id="post" class="hidden">
 
-  <h2>Post</h2>
+  <h2>Have something to say?</h2>
 
   <p class="board-desc">
-    Leave a little note.<br>
+    A little space for your thoughts.<br>
     Feel free to share anything.
   </p>
 
@@ -726,7 +1363,7 @@ function showPage(page, btn) {
      Jazz를 벗어날 때 영상 초기화
   -------------------------------- */
 
-  if (page !== "concert") {
+  if (page !== "jazz") {
 
     const video =
       document.getElementById("jazzVideo");
@@ -747,7 +1384,7 @@ function showPage(page, btn) {
      항상 글 목록 화면으로 초기화
   -------------------------------- */
 
-  if (page === "board") {
+  if (page === "universe") {
 
     document
       .getElementById("universeArticleView")
@@ -766,9 +1403,9 @@ function showPage(page, btn) {
   [
     "about",
     "gallery",
-    "concert",
-    "board",
-    "blog"
+    "jazz",
+    "universe",
+    "post"
   ].forEach(id => {
 
     document
@@ -813,6 +1450,7 @@ function showPage(page, btn) {
 <script>
 
 window.universePosts = [];
+
 
 
 /* ================================
