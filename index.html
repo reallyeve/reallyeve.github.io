@@ -451,7 +451,7 @@ textarea {
 .jazz-card {
   background: white;
   border-radius: 22px;
-  padding: 20px 35px;
+  padding: 18px 30px;
   margin-bottom: 20px;
 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -469,24 +469,25 @@ textarea {
 /* 번호 */
 
 .jazz-number {
-  font-size: 14px;
+  font-size: 12px;
   color: #999;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 
 /* 곡 제목 */
 
 .jazz-song-title {
-  font-size: 17px;
-  margin-bottom: 4px;
+  font-size: 15px;
+  margin-bottom: 3px;
 }
 
 
 /* 연도 */
 
 .jazz-year {
-  margin-bottom: 10px;
+  font-size: 10px;
+  margin-bottom: 8px;
 }
 
 
@@ -588,7 +589,7 @@ textarea {
   border-radius: 22px;
 
   width: 100%;
-  height: 250px;
+  height: 190px;
   box-sizing: border-box;
 
   padding: 24px 35px;
@@ -604,6 +605,122 @@ textarea {
 .jazz-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+
+/* Story 본문 */
+
+.jazz-story {
+  width: 90%;
+  max-width: 900px;
+
+  margin: 0 auto 100px;
+
+  text-align: left;
+}
+
+
+.jazz-story h3 {
+  text-align: center;
+
+  font-size: 30px;
+  font-weight: 400;
+
+  margin-bottom: 25px;
+}
+
+.jazz-story-author {
+  text-align: right;
+  max-width: 900px;
+  margin: 10px auto 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  color: #888;
+  font-style: italic;
+}
+
+
+/* 언어 선택 */
+
+.jazz-language {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+
+.jazz-language button {
+  border: none;
+  background: none;
+
+  padding: 5px 10px;
+
+  font-size: 14px;
+  color: #888;
+
+  cursor: pointer;
+}
+
+
+.jazz-language button.active {
+  color: #111;
+  font-weight: bold;
+}
+
+
+/* 본문 */
+
+.jazz-story-content {
+  font-size: 16px;
+  line-height: 1.8;
+
+  color: #333;
+
+  white-space: pre-line;
+}
+
+
+/* 돌아가기 */
+
+.jazz-story-back {
+  display: block;
+
+  margin: 60px auto 0;
+
+  border: none;
+  background: none;
+
+  color: #888;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.jazz-story-back:hover {
+  color: #111;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 700px) {
+
+  .jazz-story {
+    width: 88%;
+  }
+
+  .jazz-story h3 {
+    font-size: 25px;
+  }
+
+  .jazz-story-content {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
 }
 
 /* ================================
@@ -928,9 +1045,14 @@ textarea {
     <div class="jazz-feature-text">
 
       <p>
-        One of my favorite Bill Evans performances.
-        <br>Gentle, melancholic, and beautifully balanced
-        <br>between three musicians listening to one another.
+      One of my favorite Bill Evans performances.<br>
+      Gentle, melancholic, and beautifully balanced<br>
+      between three musicians listening to one another.
+      <p>
+      <p>
+      I came to love jazz through its freedom to create something new in the moment.<br>
+      Below are some of my favorite jazz pieces for late-night listening,<br>
+      followed by a few thoughts on jazz and improvisation.
       </p>
 
     </div> <!-- 기존 .card 닫기 -->
@@ -941,7 +1063,7 @@ textarea {
      Jazz Playlist
     ================================ -->
 
-<section class="jazz-playlist">
+<section id="jazzPlaylist" class="jazz-playlist">
 
   <h2 class="jazz-playlist-title">
     Midnight Jazz Playlist. Ten pieces I keep coming back to.
@@ -1088,7 +1210,8 @@ textarea {
     </div>
 
     <div class="jazz-description">
-      A short introduction to this piece.
+      Piano and double bass move together with remarkable intimacy and restraint.
+      Like quietly looking back on a memory from long ago.
     </div>
 
     <a
@@ -1145,7 +1268,7 @@ textarea {
     </div>
 
     <div class="jazz-description">
-      Chet Baker brings a tender, effortless warmth to this romantic standard.
+      Chet Baker brings a tender warmth to this romantic standard.
       It carries the feeling of waiting for someone at the end of the night.
     </div>
 
@@ -1249,11 +1372,60 @@ textarea {
 
 </section>
 
-    </div>
+<!-- ================================
+     Jazz Story
+================================ -->
+
+<div
+  id="jazzStory"
+  class="jazz-story hidden">
+
+  <h3 id="jazzStoryTitle"></h3>
+
+  <p class="jazz-story-author">Written by Heather</p>
+
+  <div class="jazz-language">
+
+    <button
+      id="jazzEnglishBtn"
+      class="active"
+      onclick="showJazzLanguage('english')">
+      English
+    </button>
+
+    <span>|</span>
+
+    <button
+      id="jazzKoreanBtn"
+      onclick="showJazzLanguage('korean')">
+      한국어
+    </button>
 
   </div>
 
-</div>
+
+  <div
+    id="jazzEnglish"
+    class="jazz-story-content">
+  </div>
+
+
+  <div
+    id="jazzKorean"
+    class="jazz-story-content"
+    style="display: none;">
+  </div>
+
+
+  <button
+    class="jazz-story-back"
+    onclick="backToJazzPlaylist()">
+    ← Back to playlist
+  </button>
+
+</div> <!-- jazzStory 닫기 -->
+
+</div> <!-- jazz 닫기 -->
 
 
 
@@ -1430,6 +1602,17 @@ function showPage(page, btn) {
     .getElementById(page)
     .classList.remove("hidden");
 
+  /* --------------------------------
+   Jazz 메뉴를 열면 Story 자동 표시
+-------------------------------- */
+
+if (page === "jazz") {
+
+  if (window.openJazzStory) {
+    window.openJazzStory();
+  }
+
+}
 
   /* --------------------------------
      메뉴 활성화
@@ -1445,6 +1628,85 @@ function showPage(page, btn) {
 
 
   btn.classList.add("active");
+
+}
+
+</script>
+
+<script>
+
+/* ================================
+   Jazz Story 언어 전환
+================================ */
+
+function showJazzLanguage(language) {
+
+  const english =
+    document.getElementById("jazzEnglish");
+
+  const korean =
+    document.getElementById("jazzKorean");
+
+  const englishBtn =
+    document.getElementById("jazzEnglishBtn");
+
+  const koreanBtn =
+    document.getElementById("jazzKoreanBtn");
+
+
+  if (language === "english") {
+
+    english.style.display = "block";
+    korean.style.display = "none";
+
+    englishBtn.classList.add("active");
+    koreanBtn.classList.remove("active");
+
+  }
+
+
+  if (language === "korean") {
+
+    english.style.display = "none";
+    korean.style.display = "block";
+
+    englishBtn.classList.remove("active");
+    koreanBtn.classList.add("active");
+
+  }
+
+}
+
+
+/* ================================
+   Jazz Story 닫기
+================================ */
+
+function closeJazzStory() {
+
+  const story =
+    document.getElementById("jazzStory");
+
+  story.classList.add("hidden");
+
+
+  document
+    .querySelector(".jazz-story-link-container")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+}
+
+function backToJazzPlaylist() {
+
+  document
+    .getElementById("jazzPlaylist")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
 
 }
 
@@ -1584,7 +1846,9 @@ import {
   getFirestore,
   collection,
   addDoc,
-  onSnapshot
+  onSnapshot,
+  doc,
+  getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -1613,6 +1877,101 @@ const app = initializeApp({
 
 const db =
   getFirestore(app);
+
+
+/* ================================
+   Jazz Story 불러오기
+================================ */
+
+window.openJazzStory = async () => {
+
+  const story =
+    document.getElementById("jazzStory");
+
+
+  try {
+
+    const storyRef =
+      doc(
+        db,
+        "jazzStories",
+        "interstellar-improvisation"
+      );
+
+
+    const storySnapshot =
+      await getDoc(storyRef);
+
+
+    if (!storySnapshot.exists()) {
+
+      console.error(
+        "Jazz Story를 찾을 수 없습니다."
+      );
+
+      alert(
+        "글을 불러오지 못했습니다."
+      );
+
+      return;
+    }
+
+
+    const data =
+      storySnapshot.data();
+
+
+    /* 제목 */
+
+    document
+      .getElementById("jazzStoryTitle")
+      .innerText =
+        data.title || "";
+
+
+    /* English */
+
+    document
+      .getElementById("jazzEnglish")
+      .innerText =
+        data.english || "";
+
+
+    /* 한국어 */
+
+    document
+      .getElementById("jazzKorean")
+      .innerText =
+        data.korean || "";
+
+
+    /* 기본 언어 = English */
+
+    showJazzLanguage("english");
+
+
+    /* Story 표시 */
+
+    story.classList.remove("hidden");
+
+
+  }
+
+
+  catch (error) {
+
+    console.error(
+      "Jazz Story 불러오기 오류:",
+      error
+    );
+
+    alert(
+      "글을 불러오지 못했습니다."
+    );
+
+  }
+
+};
 
 /* ================================
    Universe 글 불러오기
