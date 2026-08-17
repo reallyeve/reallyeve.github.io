@@ -15,6 +15,10 @@ body {
   margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
   background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+
+  /* 텍스트 드래그 및 선택 방지 */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 h1 {
@@ -650,13 +654,35 @@ textarea {
   font-style: italic;
 }
 
+/* Jazz Story 사진 */
+
+.jazz-story-image-container {
+  width: 75%;
+  max-width: 700px;
+  margin: 10px auto 35px;
+  text-align: center;
+}
+
+.jazz-story-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.jazz-story-image-caption {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #999;
+  text-align: center;
+}
+
 
 /* 언어 선택 */
 
 .jazz-language {
   text-align: center;
-
-  margin-bottom: 45px;
+  margin-bottom: 25px;
 }
 
 
@@ -734,18 +760,41 @@ textarea {
 }
 
 /* ================================
+   Jazz Story 모바일
+================================ */
+
+@media (max-width: 700px) {
+
+  .jazz-story {
+    width: 88%;
+  }
+
+  .jazz-story h3 {
+    font-size: 25px;
+  }
+
+  .jazz-story-content {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+}
+
+
+/* ================================
    Jazz 메인 콘텐츠
 ================================ */
 
 .jazz-feature {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto 80px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
 
-  gap: 60px;
+  align-items: center;
+  column-gap: 60px;
 }
 
 
@@ -753,7 +802,6 @@ textarea {
 
 .jazz-feature-video {
   width: 420px;
-  flex-shrink: 0;
 }
 
 
@@ -787,7 +835,7 @@ textarea {
 /* 오른쪽 감상 */
 
 .jazz-feature-text {
-  flex: 1;
+  width: 100%;
 
   text-align: left;
   font-style: italic;
@@ -803,14 +851,29 @@ textarea {
 }
 
 
-/* 모바일에서는 한 줄에 하나 */
+/* ================================
+   Jazz 메인 콘텐츠 모바일
+================================ */
 
 @media (max-width: 700px) {
 
   .jazz-card-container {
     grid-template-columns: 1fr;
-
     width: 90%;
+  }
+
+  .jazz-feature {
+    grid-template-columns: 1fr;
+    width: 90%;
+    row-gap: 30px;
+  }
+
+  .jazz-feature-video {
+    width: 100%;
+  }
+
+  .jazz-feature-text {
+    width: 100%;
   }
 
 }
@@ -1058,16 +1121,17 @@ textarea {
       One of my favorite Bill Evans performances.<br>
       Gentle, melancholic, and beautifully balanced<br>
       between three musicians listening to one another.
-      <p>
+      </p>
+
       <p>
       I came to love jazz through its freedom to create something new in the moment.<br>
       Below are some of my favorite jazz pieces for late-night listening,<br>
       followed by a few thoughts on jazz and improvisation.
       </p>
 
-    </div> <!-- 기존 .card 닫기 -->
+    </div> <!-- .jazz-feature-text -->
 
-  </div> <!-- 기존 .grid 닫기 -->
+  </div> <!-- .jazz-feature -->
 
       <!-- ================================
      Jazz Playlist
@@ -1414,6 +1478,22 @@ textarea {
   </div>
 
 
+  <!-- Interstellar 사진 -->
+
+  <div class="jazz-story-image-container">
+
+  <img
+    src="interstellar-blackhole.jpg"
+    class="jazz-story-image"
+    alt="Interstellar black hole">
+
+  <div class="jazz-story-image-caption">
+    Interstellar (2014)
+  </div>
+
+</div>
+
+
   <div
     id="jazzEnglish"
     class="jazz-story-content">
@@ -1436,7 +1516,6 @@ textarea {
 </div> <!-- jazzStory 닫기 -->
 
 </div> <!-- jazz 닫기 -->
-
 
 
 <!-- ================================
@@ -1568,6 +1647,7 @@ document
   .getElementById("homeTitle")
   .addEventListener("click", goHome);
 
+
 function showPage(page, btn) {
 
   /* --------------------------------
@@ -1611,40 +1691,50 @@ function showPage(page, btn) {
      모든 페이지 숨기기
   -------------------------------- */
 
-  [
+  const pages = [
     "about",
     "gallery",
     "jazz",
     "universe",
     "post"
-  ].forEach(id => {
+  ];
 
-    document
-      .getElementById(id)
-      .classList.add("hidden");
+  pages.forEach(id => {
+
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+      element.classList.add("hidden");
+    }
 
   });
 
 
   /* --------------------------------
-     선택한 페이지 표시
+     선택한 페이지만 표시
   -------------------------------- */
 
-  document
-    .getElementById(page)
-    .classList.remove("hidden");
+  const selectedPage =
+    document.getElementById(page);
 
-  /* --------------------------------
-   Jazz 메뉴를 열면 Story 자동 표시
--------------------------------- */
-
-if (page === "jazz") {
-
-  if (window.openJazzStory) {
-    window.openJazzStory();
+  if (selectedPage) {
+    selectedPage.classList.remove("hidden");
   }
 
-}
+
+  /* --------------------------------
+     Jazz 메뉴를 열면 Story 자동 표시
+  -------------------------------- */
+
+  if (page === "jazz") {
+
+    if (window.openJazzStory) {
+      window.openJazzStory();
+    }
+
+  }
+
 
   /* --------------------------------
      메뉴 활성화
@@ -1659,7 +1749,9 @@ if (page === "jazz") {
     });
 
 
-  btn.classList.add("active");
+  if (btn) {
+    btn.classList.add("active");
+  }
 
 }
 
