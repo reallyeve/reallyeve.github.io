@@ -215,6 +215,7 @@ textarea {
   margin-bottom: 25px;
 }
 
+
 /* ================================
    Post 페이지
 ================================ */
@@ -263,6 +264,7 @@ textarea {
   margin-top: 8px;
 }
 
+
 /* ================================
    Universe 페이지 정렬
 ================================ */
@@ -281,7 +283,6 @@ textarea {
 #universe .board-desc {
   text-align: center;
 }
-
 
 
 /* ================================
@@ -427,13 +428,16 @@ textarea {
   margin: 0 0 5px 0;
 }
 
+
 /* 저작권 */
+
 .copyright {
   margin-top: 20px;
   font-size: 10px;
   font-style: normal;
   color: #888;
 }
+
 
 /* ================================
    Jazz Playlist
@@ -577,6 +581,7 @@ textarea {
 
 }
 
+
 /* ================================
    Jazz Playlist Grid
 ================================ */
@@ -603,7 +608,7 @@ textarea {
   background: white;
   border-radius: 22px;
   width: 100%;
-  
+
   box-sizing: border-box;
 
   padding: 24px 35px;
@@ -622,8 +627,9 @@ textarea {
 }
 
 
-
-/* Story 본문 */
+/* ================================
+   Story 본문
+================================ */
 
 .jazz-story {
   width: 90%;
@@ -653,6 +659,7 @@ textarea {
   color: #888;
   font-style: italic;
 }
+
 
 /* Jazz Story 사진 */
 
@@ -758,6 +765,7 @@ textarea {
   }
 
 }
+
 
 /* ================================
    Jazz Story 모바일
@@ -878,6 +886,486 @@ textarea {
 
 }
 
+
+/* ================================
+   Jazz Home
+================================ */
+
+.jazz-home {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.jazz-home-description {
+  max-width: 650px;
+  margin: 0 auto 70px;
+  color: #888;
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.jazz-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.jazz-preview-column {
+  min-width: 0;
+  padding: 40px 28px 35px;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.jazz-preview-column:last-child {
+  border-right: none;
+}
+
+.jazz-preview-heading {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 18px;
+  color: #111;
+  text-align: center;
+}
+
+.jazz-clickable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.jazz-clickable:hover {
+  opacity: 0.6;
+}
+
+.jazz-preview-description {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 auto 30px;
+  max-width: 260px;
+}
+
+.jazz-preview-feature {
+  margin-bottom: 25px;
+}
+
+.jazz-preview-feature iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 14px;
+  display: block;
+}
+
+.jazz-preview-caption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+  text-align: left;
+}
+
+.jazz-preview-list {
+  text-align: left;
+}
+
+.jazz-preview-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.jazz-preview-list-item:last-child {
+  border-bottom: none;
+}
+
+.jazz-preview-list-item .year {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #999;
+}
+
+.jazz-playlist-preview-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.jazz-playlist-preview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 25px rgba(0,0,0,0.10);
+}
+
+.jazz-playlist-preview-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.jazz-playlist-preview-info {
+  padding: 15px 16px 17px;
+  text-align: left;
+}
+
+.jazz-playlist-preview-title {
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.jazz-playlist-preview-description {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #999;
+}
+
+.jazz-article-preview-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.jazz-article-preview-card:hover {
+  opacity: 0.6;
+}
+
+.jazz-article-preview-card:last-child {
+  border-bottom: none;
+}
+
+.jazz-article-preview-title {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #222;
+}
+
+.jazz-article-preview-meta {
+  margin-top: 7px;
+  font-size: 11px;
+  color: #999;
+}
+
+.jazz-article-preview-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.jazz-article-preview-empty {
+  padding: 30px 0;
+  color: #999;
+  font-size: 13px;
+}
+
+.jazz-view-all {
+  display: block;
+  margin-top: 25px;
+  color: #777;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.jazz-view-all:hover {
+  color: #111;
+}
+
+.jazz-quote {
+  max-width: 1000px;
+  margin: 30px auto 0;
+  padding: 28px 30px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.45);
+  border-radius: 12px;
+  color: #666;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.jazz-quote-author {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+  font-style: normal;
+}
+
+
+/* ================================
+   Jazz 상세 화면
+================================ */
+
+.jazz-detail-page {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.jazz-detail-page h3 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+
+.jazz-detail-back {
+  display: block;
+  margin: 50px auto 20px;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.jazz-detail-back:hover {
+  color: #111;
+}
+
+.jazz-video-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.jazz-video-card {
+  text-align: left;
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+}
+
+.jazz-video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 12px;
+  display: block;
+}
+
+.jazz-video-card-title {
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+.jazz-video-card-date {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #999;
+}
+
+.jazz-playlist-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.jazz-playlist-detail-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.jazz-playlist-detail-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 25px rgba(0,0,0,0.10);
+}
+
+.jazz-playlist-detail-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.jazz-playlist-detail-info {
+  padding: 15px;
+  text-align: left;
+}
+
+.jazz-playlist-detail-title {
+  font-size: 15px;
+  color: #222;
+}
+
+.jazz-playlist-detail-description {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #999;
+}
+
+.jazz-article-list {
+  width: 700px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.jazz-article-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.jazz-article-list-item:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.jazz-article-list-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.jazz-article-list-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #999;
+}
+
+.jazz-article-list-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+
+/* ================================
+   Jazz Playlist 상세
+================================ */
+
+.jazz-playlist-detail {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.jazz-playlist-detail h3 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.jazz-playlist-song {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+  text-align: left;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+}
+
+.jazz-playlist-song-title {
+  font-size: 16px;
+}
+
+.jazz-playlist-song-year {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.jazz-playlist-song-description {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 8px;
+  color: #555;
+}
+
+.jazz-playlist-song a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #555;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.jazz-playlist-song a:hover {
+  color: #111;
+}
+
+
+/* ================================
+   모바일
+================================ */
+
+@media (max-width: 700px) {
+
+  .jazz-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jazz-preview-column {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .jazz-preview-column:last-child {
+    border-bottom: none;
+  }
+
+  .jazz-video-list {
+    grid-template-columns: 1fr;
+  }
+
+  .jazz-playlist-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jazz-article-list {
+    width: 90%;
+  }
+
+  .jazz-home-description {
+    width: 88%;
+    font-size: 15px;
+  }
+
+  .jazz-quote {
+    width: 90%;
+    font-size: 14px;
+  }
+
+}
+
+
 /* ================================
    Modal
 ================================ */
@@ -918,7 +1406,6 @@ textarea {
   opacity: 0.7;
 }
 
-
 </style>
 </head>
 
@@ -935,7 +1422,7 @@ textarea {
 <div class="menu">
 
   <button id="aboutButton" onclick="showPage('about', this)">
-  About
+    About
   </button>
 
   <button onclick="showPage('gallery', this)">
@@ -970,65 +1457,62 @@ textarea {
 
   <div class="about-content">
 
-    <!-- 사진 -->
     <img
       src="heather.jpg"
       class="about-photo"
     >
 
-    <!-- 소개글 -->
     <div class="about-text">
 
-  <p class="about-greeting">
-    Hello, I'm Heather.
-    <br>This is my personal archive,
-    <br>where I collect things I love,
-    <br>things I learn, and little moments from everyday life.
-  </p>
-
-  <p>
-    I'm especially interested in astronomy,
-    <br>so I study the universe and write down what I learn, one piece at a time.
-  </p>
-
-  <p>
-    I love jazz too — listening to it,
-    <br>and playing the piano from time to time.
-  </p>
-
-  <p>
-    I created this archive to keep these interests,
-    <br>my photographs, and the little moments of everyday life in one place,
-    <br>while learning AI-assisted vibe coding and exploring
-    <br>what I can create with it.
-  </p>
-
-
-  <!-- 연락처 -->
-  <div class="about-contact">
-
-    <p>
-      Feel free to get in touch!<br>
-      Instagram : @heather_archive_love
-    </p>
-
-    <!-- 저작권 -->
-    <div class="copyright">
-      <p>
-        © 2026 Heather. All rights reserved.<br>
-        All photographs, writings, and original content are my own.
+      <p class="about-greeting">
+        Hello, I'm Heather.
+        <br>This is my personal archive,
+        <br>where I collect things I love,
+        <br>things I learn, and little moments from everyday life.
       </p>
+
+      <p>
+        I'm especially interested in astronomy,
+        <br>so I study the universe and write down what I learn, one piece at a time.
+      </p>
+
+      <p>
+        I love jazz too —
+        <br>listening to it,
+        <br>and playing the piano from time to time.
+      </p>
+
+      <p>
+        I created this archive to keep these interests,
+        <br>my photographs, and the little moments of everyday life in one place,
+        <br>while learning AI-assisted vibe coding and exploring
+        <br>what I can create with it.
+      </p>
+
+
+      <div class="about-contact">
+
+        <p>
+          Feel free to get in touch!<br>
+          Instagram : @heather_archive_love
+        </p>
+
+        <div class="copyright">
+
+          <p>
+            © 2026 Heather. All rights reserved.<br>
+            All photographs, writings, and original content are my own.
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
-</div> <!-- about-text -->
-
-</div> <!-- about-content -->
-
-</div> <!-- about -->
-
-
+</div>
 
 
 <!-- ================================
@@ -1082,7 +1566,6 @@ textarea {
 </div>
 
 
-
 <!-- ================================
      Jazz
 ================================ -->
@@ -1092,430 +1575,526 @@ textarea {
   <h2>Why Did I Get Into Jazz?</h2>
 
 
+  <!-- ================================
+       Jazz Home
+  ================================ -->
 
-   <div class="jazz-feature">
+  <div id="jazzHome" class="jazz-home">
 
-    <!-- 왼쪽 : 영상 -->
-    <div class="jazz-feature-video">
+    <div class="jazz-preview-grid">
 
-      <iframe
-        id="jazzVideo"
-        src="https://www.youtube.com/embed/wrWQndgX1QU"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
 
-      <div class="jazz-feature-caption">
-        Bill Evans Trio - Emily(1969)<br>
-        Bill Evans(piano), Eddie Gomez(bass), Marty Morell(drums)
+      <!-- ================================
+           Videos
+      ================================ -->
+
+      <div class="jazz-preview-column">
+
+        <h3
+          class="jazz-preview-heading jazz-clickable"
+          onclick="showJazzSection('videos')">
+          Videos
+        </h3>
+
+        <p class="jazz-preview-description">
+          Videos and live performances<br>
+          that inspire me.
+        </p>
+
+
+        <div class="jazz-preview-feature">
+
+          <iframe
+            src="https://www.youtube.com/embed/wrWQndgX1QU"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+          <div class="jazz-preview-caption">
+            Bill Evans Trio - Emily<br>
+            Live in Oslo, 1966
+          </div>
+
+        </div>
+
+
+        <div class="jazz-preview-list">
+
+          <div class="jazz-preview-list-item">
+            Bill Evans Trio – Waltz for Debby (Live)
+            <span class="year">2026</span>
+          </div>
+
+          <div class="jazz-preview-list-item">
+            Chet Baker – My Funny Valentine
+            <span class="year">2026</span>
+          </div>
+
+          <div class="jazz-preview-list-item">
+            John Coltrane – Naima (Live)
+            <span class="year">2026</span>
+          </div>
+
+        </div>
+
+
+        <div
+          class="jazz-view-all"
+          onclick="showJazzSection('videos')">
+          View all videos →
+        </div>
+
+      </div>
+
+
+      <!-- ================================
+           Playlists
+      ================================ -->
+
+      <div class="jazz-preview-column">
+
+        <h3
+          class="jazz-preview-heading jazz-clickable"
+          onclick="showJazzSection('playlists')">
+          Playlists
+        </h3>
+
+        <p class="jazz-preview-description">
+          Curated playlists<br>
+          for different moods.
+        </p>
+
+
+        <!-- Playlist 1 -->
+
+        <div
+          class="jazz-playlist-preview-card"
+          onclick="openJazzPlaylist('midnight')">
+
+          <img
+            src="https://i.ytimg.com/vi/LmnRX1MuMgM/hqdefault.jpg"
+            alt="Midnight Jazz Playlist">
+
+          <div class="jazz-playlist-preview-info">
+
+            <div class="jazz-playlist-preview-title">
+              Midnight Jazz Playlist
+            </div>
+
+            <div class="jazz-playlist-preview-description">
+              A quiet selection for late nights.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Playlist 2 -->
+
+        <div
+          class="jazz-playlist-preview-card"
+          onclick="openJazzPlaylist('rainy')">
+
+          <img
+            src="https://i.ytimg.com/vi/GeYsi9NDM9Y/hqdefault.jpg"
+            alt="Rainy Day Jazz Playlist">
+
+          <div class="jazz-playlist-preview-info">
+
+            <div class="jazz-playlist-preview-title">
+              Rainy Day Jazz Playlist
+            </div>
+
+            <div class="jazz-playlist-preview-description">
+              Soft sounds for a rainy afternoon.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Playlist 3 -->
+
+        <div
+          class="jazz-playlist-preview-card"
+          onclick="openJazzPlaylist('sunday')">
+
+          <img
+            src="https://i.ytimg.com/vi/hUGqQyg4N8M/hqdefault.jpg"
+            alt="Sunday Morning Jazz Playlist">
+
+          <div class="jazz-playlist-preview-info">
+
+            <div class="jazz-playlist-preview-title">
+              Sunday Morning Jazz Playlist
+            </div>
+
+            <div class="jazz-playlist-preview-description">
+              A gentle start to the day.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="jazz-view-all"
+          onclick="showJazzSection('playlists')">
+          View all playlists →
+        </div>
+
+      </div>
+
+
+      <!-- ================================
+           Articles
+      ================================ -->
+
+      <div class="jazz-preview-column">
+
+        <h3
+          class="jazz-preview-heading jazz-clickable"
+          onclick="showJazzSection('articles')">
+          Articles
+        </h3>
+
+        <p class="jazz-preview-description">
+          Thoughts on jazz,<br>
+          improvisation, and more.
+        </p>
+
+
+        <div
+          id="jazzArticlePreview"
+          class="jazz-article-preview">
+          Loading articles...
+        </div>
+
+
+        <div
+          class="jazz-view-all"
+          onclick="showJazzSection('articles')">
+          View all articles →
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- ================================
+         Jazz Quote
+    ================================ -->
+
+    <div class="jazz-quote">
+
+      Jazz isn't just music to me.<br>
+      It's the way I understand space, time, and myself.
+
+      <span class="jazz-quote-author">
+        — Heather
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       Videos 상세
+  ================================ -->
+
+  <div
+    id="jazzVideos"
+    class="jazz-detail-page hidden">
+
+    <h3>Videos</h3>
+
+
+    <div class="jazz-video-list">
+
+
+      <div class="jazz-video-card">
+
+        <iframe
+          src="https://www.youtube.com/embed/wrWQndgX1QU"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+
+        <div class="jazz-video-card-title">
+          Bill Evans Trio – Emily
+        </div>
+
+        <div class="jazz-video-card-date">
+          Live in Oslo, 1966
+        </div>
+
+      </div>
+
+
+      <div class="jazz-video-card">
+
+        <iframe
+          src="https://www.youtube.com/embed/uaoJO_izyTQ"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+
+        <div class="jazz-video-card-title">
+          Jazz Performance
+        </div>
+
+        <div class="jazz-video-card-date">
+          Live performance
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="jazz-detail-back"
+      onclick="showJazzHome()">
+      ← Back to Jazz
+    </button>
+
+  </div>
+
+
+  <!-- ================================
+       Playlists 상세
+  ================================ -->
+
+  <div
+    id="jazzPlaylists"
+    class="jazz-detail-page hidden">
+
+    <h3>Playlists</h3>
+
+
+    <div class="jazz-playlist-detail-grid">
+
+
+      <!-- Midnight -->
+
+      <div
+        class="jazz-playlist-detail-card"
+        onclick="openJazzPlaylist('midnight')">
+
+        <img
+          src="https://i.ytimg.com/vi/LmnRX1MuMgM/hqdefault.jpg"
+          alt="Midnight Jazz Playlist">
+
+        <div class="jazz-playlist-detail-info">
+
+          <div class="jazz-playlist-detail-title">
+            Midnight Jazz Playlist
+          </div>
+
+          <div class="jazz-playlist-detail-description">
+            A quiet selection for late nights.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Rainy -->
+
+      <div
+        class="jazz-playlist-detail-card"
+        onclick="openJazzPlaylist('rainy')">
+
+        <img
+          src="https://i.ytimg.com/vi/GeYsi9NDM9Y/hqdefault.jpg"
+          alt="Rainy Day Jazz Playlist">
+
+        <div class="jazz-playlist-detail-info">
+
+          <div class="jazz-playlist-detail-title">
+            Rainy Day Jazz Playlist
+          </div>
+
+          <div class="jazz-playlist-detail-description">
+            Soft sounds for a rainy afternoon.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Sunday -->
+
+      <div
+        class="jazz-playlist-detail-card"
+        onclick="openJazzPlaylist('sunday')">
+
+        <img
+          src="https://i.ytimg.com/vi/hUGqQyg4N8M/hqdefault.jpg"
+          alt="Sunday Morning Jazz Playlist">
+
+        <div class="jazz-playlist-detail-info">
+
+          <div class="jazz-playlist-detail-title">
+            Sunday Morning Jazz Playlist
+          </div>
+
+          <div class="jazz-playlist-detail-description">
+            A gentle start to the day.
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="jazz-detail-back"
+      onclick="showJazzHome()">
+      ← Back to Jazz
+    </button>
+
+  </div>
+
+
+  <!-- ================================
+       Articles 상세
+  ================================ -->
+
+  <div
+    id="jazzArticles"
+    class="jazz-detail-page hidden">
+
+    <h3>Articles</h3>
+
+
+    <div
+      id="jazzArticleList"
+      class="jazz-article-list">
+
+      Loading articles...
+
+    </div>
+
+
+    <button
+      class="jazz-detail-back"
+      onclick="showJazzHome()">
+      ← Back to Jazz
+    </button>
+
+  </div>
+
+
+  <!-- ================================
+       Playlist 상세
+  ================================ -->
+
+  <div
+    id="jazzPlaylistDetail"
+    class="jazz-playlist-detail hidden">
+
+    <h3 id="jazzPlaylistDetailTitle"></h3>
+
+    <div id="jazzPlaylistSongs"></div>
+
+
+    <button
+      class="jazz-detail-back"
+      onclick="showJazzSection('playlists')">
+      ← Back to Playlists
+    </button>
+
+  </div>
+
+
+  <!-- ================================
+       Jazz Story
+  ================================ -->
+
+  <div
+    id="jazzStory"
+    class="jazz-story hidden">
+
+    <h3 id="jazzStoryTitle"></h3>
+
+    <p class="jazz-story-author">
+      Written by Heather
+    </p>
+
+
+    <div class="jazz-language">
+
+      <button
+        id="jazzEnglishBtn"
+        class="active"
+        onclick="showJazzLanguage('english')">
+        English
+      </button>
+
+      <span>|</span>
+
+      <button
+        id="jazzKoreanBtn"
+        onclick="showJazzLanguage('korean')">
+        한국어
+      </button>
+
+    </div>
+
+
+    <div class="jazz-story-image-container">
+
+      <img
+        src="interstellar-blackhole.jpg"
+        class="jazz-story-image"
+        alt="Interstellar black hole">
+
+      <div class="jazz-story-image-caption">
+        Interstellar (2014)
       </div>
 
     </div>
 
 
-    <!-- 오른쪽 : 감상 -->
-    <div class="jazz-feature-text">
-
-      <p>
-      One of my favorite Bill Evans performances.<br>
-      Gentle, melancholic, and beautifully balanced<br>
-      between three musicians listening to one another.
-      </p>
-
-      <p>
-      I came to love jazz through its freedom to create something new in the moment.<br>
-      Below are some of my favorite jazz pieces for late-night listening,<br>
-      followed by a few thoughts on jazz and improvisation.
-      </p>
-
-    </div> <!-- .jazz-feature-text -->
-
-  </div> <!-- .jazz-feature -->
-
-      <!-- ================================
-     Jazz Playlist
-    ================================ -->
-
-<section id="jazzPlaylist" class="jazz-playlist">
-
-  <h2 class="jazz-playlist-title">
-    Midnight Jazz Playlist. Ten pieces I keep coming back to.
-  </h2>
-
-
-
-  <div class="jazz-card-container">
-  <!-- 01 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">
-      01
+    <div
+      id="jazzEnglish"
+      class="jazz-story-content">
     </div>
 
-    <div class="jazz-song-title">
-      Carla Bley — Lawns
+
+    <div
+      id="jazzKorean"
+      class="jazz-story-content"
+      style="display: none;">
     </div>
 
-    <div class="jazz-year">
-      1981
-    </div>
-
-    <div class="jazz-description">
-    A delicate piano piece filled with space and quiet emotion.
-    Perfect for those nights when you simply want to sit and think.
-    </div>
-
-    <!--
-      현재 사용하고 있는 Bill Evans 영상의
-      YouTube 링크를 여기에 넣습니다.
-    -->
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/Ys0q8ljjiY8"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 02 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">02</div>
-
-    <div class="jazz-song-title">
-      Astrud Gilberto — Once I Loved
-    </div>
-
-    <div class="jazz-year">
-      1965
-    </div>
-
-    <div class="jazz-description">
-      A gentle bossa nova with Astrud Gilberto's soft, simple voice.
-      Warm and effortless, like a quiet evening by the window.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/GeYsi9NDM9Y"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 03 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">03</div>
-
-    <div class="jazz-song-title">
-      Pat Metheny & Charlie Haden — Our Spanish Love Song
-    </div>
-
-    <div class="jazz-year">
-      1997
-    </div>
-
-    <div class="jazz-description">
-      Guitar and double bass create an intimate, deeply personal sound.
-      It feels like looking back on a memory that never quite faded.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/hUGqQyg4N8M"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 04 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">04</div>
-
-    <div class="jazz-song-title">
-      Bill Evans — Darn That Dream
-    </div>
-
-    <div class="jazz-year">
-      1962
-    </div>
-
-    <div class="jazz-description">
-      A beautifully delicate ballad carried by Bill Evans' thoughtful piano.
-      It brings to mind old loves and feelings that never completely disappear.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/0mBpd5X-slQ"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 05 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">05</div>
-
-    <div class="jazz-song-title">
-      Keith Jarrett & Charlie Haden — My Old Flame
-    </div>
-
-    <div class="jazz-year">
-      2014
-    </div>
-
-    <div class="jazz-description">
-      Piano and double bass move together with remarkable intimacy and restraint.
-      Like quietly looking back on a memory from long ago.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/8IzzBg-jy2I"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 06 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">06</div>
-
-    <div class="jazz-song-title">
-      Oscar Peterson Trio — My One and Only Love
-    </div>
-
-    <div class="jazz-year">
-      1964
-    </div>
-
-    <div class="jazz-description">
-      A warm and elegant take on a timeless love song.
-      Its gentle piano trio sound brings a little light to the quiet of the night.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/bbhXdgrAWtA"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 07 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">07</div>
-
-    <div class="jazz-song-title">
-      Chet Baker — You'd Be So Nice to Come Home To
-    </div>
-
-    <div class="jazz-year">
-      1959
-    </div>
-
-    <div class="jazz-description">
-      Chet Baker brings a tender warmth to this romantic standard.
-      It carries the feeling of waiting for someone at the end of the night.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/nB1Lr6HBbu0"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 08 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">08</div>
-
-    <div class="jazz-song-title">
-      John Coltrane — Say It
-    </div>
-
-    <div class="jazz-year">
-      1963
-    </div>
-
-    <div class="jazz-description">
-      Coltrane's soft, expressive playing gives this ballad a quiet intensity.
-      Rather than asking for your attention, it seems to whisper its feelings.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/oRh0hxV1_SU"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 09 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">09</div>
-
-    <div class="jazz-song-title">
-      Blue Mitchell — When I Fall in Love
-    </div>
-
-    <div class="jazz-year">
-      1960
-    </div>
-
-    <div class="jazz-description">
-      Blue Mitchell's warm trumpet gives this familiar standard a gentle glow.
-      A slow, relaxed reflection on what it means to fall in love.
-    </div>
-
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/b9dVk0FCeFU"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-
-  <!-- 10 -->
-
-  <div class="jazz-card">
-
-    <div class="jazz-number">10</div>
-
-    <div class="jazz-song-title">
-      Miles Davis — 'Round Midnight
-    </div>
-
-    <div class="jazz-year">
-      1950
-    </div>
-
-    <div class="jazz-description">
-      A timeless midnight ballad, quiet, dark, and a little mysterious.
-      A fitting way to end the night, leaving a quiet feeling behind.
-    </div>
-    
-    <a
-      class="jazz-youtube"
-      href="https://youtu.be/Ys9wiGNDCvA"
-      target="_blank">
-      ▶ Listen on YouTube
-    </a>
-
-  </div>
-
-</div> <!-- ← jazz-card-container 닫기 -->
-
-</section>
-
-<!-- ================================
-     Jazz Story
-================================ -->
-
-<div
-  id="jazzStory"
-  class="jazz-story hidden">
-
-  <h3 id="jazzStoryTitle"></h3>
-
-  <p class="jazz-story-author">Written by Heather</p>
-
-  <div class="jazz-language">
 
     <button
-      id="jazzEnglishBtn"
-      class="active"
-      onclick="showJazzLanguage('english')">
-      English
-    </button>
-
-    <span>|</span>
-
-    <button
-      id="jazzKoreanBtn"
-      onclick="showJazzLanguage('korean')">
-      한국어
+      class="jazz-story-back"
+      onclick="backToJazzArticles()">
+      ← Back to articles
     </button>
 
   </div>
 
-
-  <!-- Interstellar 사진 -->
-
-  <div class="jazz-story-image-container">
-
-  <img
-    src="interstellar-blackhole.jpg"
-    class="jazz-story-image"
-    alt="Interstellar black hole">
-
-  <div class="jazz-story-image-caption">
-    Interstellar (2014)
-  </div>
 
 </div>
-
-
-  <div
-    id="jazzEnglish"
-    class="jazz-story-content">
-  </div>
-
-
-  <div
-    id="jazzKorean"
-    class="jazz-story-content"
-    style="display: none;">
-  </div>
-
-
-  <button
-    class="jazz-story-back"
-    onclick="backToJazzPlaylist()">
-    ← Back to playlist
-  </button>
-
-</div> <!-- jazzStory 닫기 -->
-
-</div> <!-- jazz 닫기 -->
 
 
 <!-- ================================
@@ -1537,20 +2116,25 @@ textarea {
 
   <div id="universeListView">
 
-    <div class="universe-list" id="universeList"></div>
+    <div
+      class="universe-list"
+      id="universeList">
+    </div>
 
   </div>
 
 
   <!-- Universe 본문 -->
 
-  <div id="universeArticleView" class="hidden">
+  <div
+    id="universeArticleView"
+    class="hidden">
 
     <div class="universe-article">
 
       <h3 id="universeArticleTitle"></h3>
 
-        <p class="universe-article-author">
+      <p class="universe-article-author">
         Written by Heather
       </p>
 
@@ -1558,7 +2142,7 @@ textarea {
         id="universeArticleDate"
         class="article-date">
       </div>
-      
+
       <div
         id="universeArticleContent"
         class="article-content">
@@ -1577,12 +2161,10 @@ textarea {
 </div>
 
 
-
 <!-- ================================
      Post
 ================================ -->
 
-<!-- Post -->
 <div id="post" class="hidden">
 
   <h2>Have Something To Say?</h2>
@@ -1592,10 +2174,11 @@ textarea {
     Feel free to share anything.
   </p>
 
+
   <textarea
     id="postInput"
-    placeholder="Write something..."
-  ></textarea>
+    placeholder="Write something...">
+  </textarea>
 
   <br>
 
@@ -1604,6 +2187,7 @@ textarea {
     onclick="addPost()">
     Post
   </button>
+
 
   <div
     id="postList"
@@ -1620,7 +2204,6 @@ textarea {
   id="modal"
   onclick="closeModal()">
 </div>
-
 
 
 <!-- ================================
@@ -1643,12 +2226,14 @@ function goHome() {
 
 }
 
+
 document
   .getElementById("homeTitle")
   .addEventListener("click", goHome);
 
 
 function showPage(page, btn) {
+
 
   /* --------------------------------
      Jazz를 벗어날 때 영상 초기화
@@ -1666,7 +2251,21 @@ function showPage(page, btn) {
       video.src = "";
 
       video.src = src;
+
     }
+
+  }
+
+
+  /* --------------------------------
+     Jazz 메뉴를 클릭하면
+     항상 Jazz Home 화면으로 초기화
+  -------------------------------- */
+
+  if (page === "jazz") {
+
+    showJazzHome();
+
   }
 
 
@@ -1684,6 +2283,7 @@ function showPage(page, btn) {
     document
       .getElementById("universeListView")
       .classList.remove("hidden");
+
   }
 
 
@@ -1699,13 +2299,16 @@ function showPage(page, btn) {
     "post"
   ];
 
+
   pages.forEach(id => {
 
     const element =
       document.getElementById(id);
 
     if (element) {
+
       element.classList.add("hidden");
+
     }
 
   });
@@ -1719,19 +2322,8 @@ function showPage(page, btn) {
     document.getElementById(page);
 
   if (selectedPage) {
+
     selectedPage.classList.remove("hidden");
-  }
-
-
-  /* --------------------------------
-     Jazz 메뉴를 열면 Story 자동 표시
-  -------------------------------- */
-
-  if (page === "jazz") {
-
-    if (window.openJazzStory) {
-      window.openJazzStory();
-    }
 
   }
 
@@ -1750,18 +2342,281 @@ function showPage(page, btn) {
 
 
   if (btn) {
+
     btn.classList.add("active");
+
   }
 
 }
 
+
 </script>
+
+
+<!-- ================================
+     Jazz 내부 화면 전환
+================================ -->
 
 <script>
 
-/* ================================
-   Jazz Story 언어 전환
-================================ */
+function hideAllJazzViews() {
+
+  const views = [
+    "jazzHome",
+    "jazzVideos",
+    "jazzPlaylists",
+    "jazzArticles",
+    "jazzPlaylistDetail",
+    "jazzStory"
+  ];
+
+
+  views.forEach(id => {
+
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+
+      element.classList.add("hidden");
+
+    }
+
+  });
+
+}
+
+
+function showJazzHome() {
+
+  hideAllJazzViews();
+
+  document
+    .getElementById("jazzHome")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function showJazzSection(section) {
+
+  hideAllJazzViews();
+
+
+  let target = null;
+
+
+  if (section === "videos") {
+
+    target =
+      document.getElementById("jazzVideos");
+
+  }
+
+
+  if (section === "playlists") {
+
+    target =
+      document.getElementById("jazzPlaylists");
+
+  }
+
+
+  if (section === "articles") {
+
+    target =
+      document.getElementById("jazzArticles");
+
+  }
+
+
+  if (target) {
+
+    target.classList.remove("hidden");
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function openJazzPlaylist(name) {
+
+  hideAllJazzViews();
+
+
+  const detail =
+    document.getElementById("jazzPlaylistDetail");
+
+  const title =
+    document.getElementById("jazzPlaylistDetailTitle");
+
+  const songs =
+    document.getElementById("jazzPlaylistSongs");
+
+
+  const playlists = {
+
+    midnight: {
+
+      title: "Midnight Jazz Playlist",
+
+      songs: [
+
+        {
+          title: "keith Jarrett — The melody at night with you",
+          year: "1999",
+          description:
+            "A delicate piano piece filled with space and quiet emotion. Perfect for those nights when you simply want to sit and think.",
+          url:
+            "https://youtu.be/LmnRX1MuMgM"
+        }
+
+      ]
+
+    },
+
+
+    rainy: {
+
+      title: "Rainy Day Jazz Playlist",
+
+      songs: [
+
+        {
+          title: "Astrud Gilberto — Once I Loved",
+          year: "1965",
+          description:
+            "A gentle bossa nova with Astrud Gilberto's soft, simple voice. Warm and effortless, like a quiet evening by the window.",
+          url:
+            "https://youtu.be/GeYsi9NDM9Y"
+        }
+
+      ]
+
+    },
+
+
+    sunday: {
+
+      title: "Sunday Morning Jazz Playlist",
+
+      songs: [
+
+        {
+          title:
+            "Pat Metheny & Charlie Haden — Our Spanish Love Song",
+          year: "1997",
+          description:
+            "Guitar and double bass create an intimate, deeply personal sound. It feels like looking back on a memory that never quite faded.",
+          url:
+            "https://youtu.be/hUGqQyg4N8M"
+        }
+
+      ]
+
+    }
+
+  };
+
+
+  const playlist =
+    playlists[name];
+
+
+  if (!playlist) return;
+
+
+  title.innerText =
+    playlist.title;
+
+
+  songs.innerHTML = "";
+
+
+  playlist.songs.forEach(song => {
+
+    const div =
+      document.createElement("div");
+
+
+    div.className =
+      "jazz-playlist-song";
+
+
+    div.innerHTML = `
+
+      <div class="jazz-playlist-song-title">
+        ${song.title}
+      </div>
+
+      <div class="jazz-playlist-song-year">
+        ${song.year}
+      </div>
+
+      <div class="jazz-playlist-song-description">
+        ${song.description}
+      </div>
+
+      <a
+        href="${song.url}"
+        target="_blank">
+        ▶ Listen on YouTube
+      </a>
+
+    `;
+
+
+    songs.appendChild(div);
+
+  });
+
+
+  detail.classList.remove("hidden");
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function backToJazzArticles() {
+
+  hideAllJazzViews();
+
+  document
+    .getElementById("jazzArticles")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+</script>
+
+
+<!-- ================================
+     Jazz Story 언어 전환
+================================ -->
+
+<script>
 
 function showJazzLanguage(language) {
 
@@ -1802,47 +2657,8 @@ function showJazzLanguage(language) {
 }
 
 
-/* ================================
-   Jazz Story 닫기
-================================ */
-
-function closeJazzStory() {
-
-  const story =
-    document.getElementById("jazzStory");
-
-  story.classList.add("hidden");
-
-
-  document
-    .querySelector(".jazz-story-link-container")
-    .scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-}
-
-function backToJazzPlaylist() {
-
-  const title =
-    document.querySelector(".jazz-playlist-title");
-
-  if (!title) return;
-
-  const y =
-    title.getBoundingClientRect().top +
-    window.pageYOffset -
-    100;
-
-  window.scrollTo({
-    top: y,
-    behavior: "smooth"
-  });
-
-}
-
 </script>
+
 
 <!-- ================================
      Universe 글 목록 / 본문
@@ -1851,7 +2667,6 @@ function backToJazzPlaylist() {
 <script>
 
 window.universePosts = [];
-
 
 
 /* ================================
@@ -1870,6 +2685,7 @@ function renderUniverseList() {
 
     const item =
       document.createElement("div");
+
 
     item.className =
       "universe-item";
@@ -1902,7 +2718,6 @@ function renderUniverseList() {
 }
 
 
-
 /* ================================
    Universe 글 열기
 ================================ */
@@ -1921,6 +2736,7 @@ function openUniversePost(index) {
   document
     .getElementById("universeArticleView")
     .classList.remove("hidden");
+
 
   document
     .getElementById("universeArticleView")
@@ -1950,7 +2766,6 @@ function openUniversePost(index) {
 }
 
 
-
 /* ================================
    Universe 목록으로 돌아가기
 ================================ */
@@ -1971,15 +2786,11 @@ function backToUniverseList() {
 </script>
 
 
-
-
-
 <!-- ================================
      Firebase
 ================================ -->
 
 <script type="module">
-
 
 import {
   getFirestore,
@@ -1987,7 +2798,8 @@ import {
   addDoc,
   onSnapshot,
   doc,
-  getDoc
+  getDoc,
+  getDocs
 }
 from
 "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -1995,7 +2807,6 @@ from
 import {
   initializeApp
 }
-
 from
 "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
@@ -2019,98 +2830,347 @@ const db =
 
 
 /* ================================
-   Jazz Story 불러오기
+   Jazz Articles
 ================================ */
 
-window.openJazzStory = async () => {
+window.jazzStories = [];
 
-  const story =
-    document.getElementById("jazzStory");
+
+window.getJazzStoryById = async function(id) {
+
+  const storyRef =
+    doc(db, "jazzStories", id);
+
+  const storySnapshot =
+    await getDoc(storyRef);
+
+  if (!storySnapshot.exists()) {
+    return null;
+  }
+
+  return storySnapshot.data();
+
+};
+
+
+window.loadJazzStories = async function() {
+
+  const preview =
+    document.getElementById("jazzArticlePreview");
+
+  const list =
+    document.getElementById("jazzArticleList");
 
 
   try {
 
-    const storyRef =
-      doc(
-        db,
-        "jazzStories",
-        "interstellar-improvisation"
+    const snapshot =
+      await getDocs(
+        collection(db, "jazzStories")
       );
 
 
-    const storySnapshot =
-      await getDoc(storyRef);
+    window.jazzStories = [];
 
 
-    if (!storySnapshot.exists()) {
+    snapshot.forEach((documentSnapshot) => {
 
-      console.error(
-        "Jazz Story를 찾을 수 없습니다."
-      );
+      window.jazzStories.push({
 
-      alert(
-        "글을 불러오지 못했습니다."
-      );
+        id: documentSnapshot.id,
+        data: documentSnapshot.data()
 
-      return;
-    }
+      });
+
+    });
 
 
-    const data =
-      storySnapshot.data();
+    window.jazzStories.sort((a, b) => {
+
+      const dateA =
+        String(
+          a.data.date ||
+          a.data.createdAt ||
+          ""
+        );
+
+      const dateB =
+        String(
+          b.data.date ||
+          b.data.createdAt ||
+          ""
+        );
+
+      return dateB.localeCompare(dateA);
+
+    });
 
 
-    /* 제목 */
-
-    document
-      .getElementById("jazzStoryTitle")
-      .innerText =
-        data.title || "";
-
-
-    /* English */
-
-    document
-      .getElementById("jazzEnglish")
-      .innerText =
-        data.english || "";
-
-
-    /* 한국어 */
-
-    document
-      .getElementById("jazzKorean")
-      .innerText =
-        data.korean || "";
-
-
-    /* 기본 언어 = English */
-
-    showJazzLanguage("english");
-
-
-    /* Story 표시 */
-
-    story.classList.remove("hidden");
-
+    window.renderJazzArticlePreviews();
+    window.renderJazzArticleList();
 
   }
-
 
   catch (error) {
 
     console.error(
-      "Jazz Story 불러오기 오류:",
+      "Jazz Article 목록 불러오기 오류:",
       error
     );
+
+
+    if (preview) {
+
+      preview.innerHTML = `
+        <div class="jazz-article-preview-empty">
+          Articles could not be loaded.
+        </div>
+      `;
+
+    }
+
+
+    if (list) {
+
+      list.innerHTML = `
+        <div class="jazz-article-preview-empty">
+          Articles could not be loaded.
+        </div>
+      `;
+
+    }
+
+  }
+
+};
+
+
+window.renderJazzArticlePreviews = function() {
+
+  const container =
+    document.getElementById("jazzArticlePreview");
+
+  if (!container) return;
+
+
+  const stories =
+    window.jazzStories || [];
+
+
+  if (stories.length === 0) {
+
+    container.innerHTML = `
+      <div class="jazz-article-preview-empty">
+        No articles yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  stories.slice(0, 3).forEach((story) => {
+
+    const data =
+      story.data || {};
+
+
+    const item =
+      document.createElement("div");
+
+
+    item.className =
+      "jazz-article-preview-card";
+
+
+    item.onclick = function() {
+
+      window.openJazzStory(story.id);
+
+    };
+
+
+    const date =
+      data.date ||
+      data.year ||
+      "";
+
+
+    item.innerHTML = `
+
+      <div>
+
+        <div class="jazz-article-preview-title">
+          ${data.title || ""}
+        </div>
+
+        <div class="jazz-article-preview-meta">
+          ${date}
+        </div>
+
+      </div>
+
+      <img
+        class="jazz-article-preview-image"
+        src="${data.image || "interstellar-blackhole.jpg"}"
+        alt="Jazz article">
+
+    `;
+
+
+    container.appendChild(item);
+
+  });
+
+};
+
+
+window.renderJazzArticleList = function() {
+
+  const container =
+    document.getElementById("jazzArticleList");
+
+  if (!container) return;
+
+
+  const stories =
+    window.jazzStories || [];
+
+
+  if (stories.length === 0) {
+
+    container.innerHTML = `
+      <div class="jazz-article-preview-empty">
+        No articles yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  stories.forEach((story) => {
+
+    const data =
+      story.data || {};
+
+
+    const item =
+      document.createElement("div");
+
+
+    item.className =
+      "jazz-article-list-item";
+
+
+    item.onclick = function() {
+
+      window.openJazzStory(story.id);
+
+    };
+
+
+    const date =
+      data.date ||
+      data.year ||
+      "";
+
+
+    item.innerHTML = `
+
+      <div>
+
+        <div class="jazz-article-list-title">
+          ${data.title || ""}
+        </div>
+
+        <div class="jazz-article-list-meta">
+          ${date}
+        </div>
+
+      </div>
+
+      <img
+        class="jazz-article-list-image"
+        src="${data.image || "interstellar-blackhole.jpg"}"
+        alt="Jazz article">
+
+    `;
+
+
+    container.appendChild(item);
+
+  });
+
+};
+
+
+window.openJazzStory = async function(id) {
+
+  const story =
+    await window.getJazzStoryById(id);
+
+
+  if (!story) {
 
     alert(
       "글을 불러오지 못했습니다."
     );
 
+    return;
+
   }
 
+
+  const storyElement =
+    document.getElementById("jazzStory");
+
+
+  document
+    .getElementById("jazzStoryTitle")
+    .innerText =
+      story.title || "";
+
+
+  document
+    .getElementById("jazzEnglish")
+    .innerText =
+      story.english || "";
+
+
+  document
+    .getElementById("jazzKorean")
+    .innerText =
+      story.korean || "";
+
+
+  showJazzLanguage("english");
+
+
+  hideAllJazzViews();
+
+
+  storyElement.classList.remove("hidden");
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
 };
+
+
+window.loadJazzStories();
+
 
 /* ================================
    Universe 글 불러오기
@@ -2129,14 +3189,17 @@ onSnapshot(
       window.universePosts.push({
 
         id: documentSnapshot.id,
-
         ...documentSnapshot.data()
 
       });
 
     });
 
-  window.universePosts.sort((a, b) => b.order - a.order);
+
+    window.universePosts.sort(
+      (a, b) => b.order - a.order
+    );
+
 
     renderUniverseList();
 
@@ -2153,9 +3216,6 @@ onSnapshot(
   }
 
 );
-
-
-
 
 
 /* ================================
@@ -2176,19 +3236,20 @@ window.addPost = async () => {
 
   try {
 
-   await addDoc(
-     collection(db, "posts"),
-  {
-    text: text,
-    time: new Date().toLocaleString(),
-    createdAt: Date.now()
-  }
+    await addDoc(
+      collection(db, "posts"),
+      {
+        text: text,
+        time: new Date().toLocaleString(),
+        createdAt: Date.now()
+      }
     );
 
 
     input.value = "";
 
   }
+
 
   catch (error) {
 
@@ -2197,6 +3258,7 @@ window.addPost = async () => {
       error
     );
 
+
     alert(
       "글 등록에 실패했습니다."
     );
@@ -2204,7 +3266,6 @@ window.addPost = async () => {
   }
 
 };
-
 
 
 /* ================================
@@ -2230,20 +3291,18 @@ onSnapshot(
       docs.push({
 
         id: documentSnapshot.id,
-
         ...documentSnapshot.data()
 
       });
 
     });
- 
-   
-    
-    /* 최신 글이 위로 */
 
-    docs.sort((a, b) =>
-     Number(b.createdAt || 0) - Number(a.createdAt || 0)
-     );
+
+    docs.sort(
+      (a, b) =>
+        Number(b.createdAt || 0) -
+        Number(a.createdAt || 0)
+    );
 
 
     docs.forEach((d) => {
@@ -2262,15 +3321,15 @@ onSnapshot(
 
       div.innerHTML = `
 
-     <div>
-     ${d.text}
-     </div>
+        <div>
+          ${d.text}
+        </div>
 
-     <div class="post-time">
-     ${d.time || ""}
-     </div>
+        <div class="post-time">
+          ${d.time || ""}
+        </div>
 
-    `;
+      `;
 
 
       postList.appendChild(div);
@@ -2278,6 +3337,7 @@ onSnapshot(
     });
 
   },
+
 
   (error) => {
 
@@ -2289,7 +3349,6 @@ onSnapshot(
   }
 
 );
-
 
 
 </script>
@@ -2306,30 +3365,47 @@ function openModal(element) {
   const modal =
     document.getElementById("modal");
 
+
   modal.innerHTML = "";
+
 
   const closeButton =
     document.createElement("div");
 
-  closeButton.className = "modal-close";
-  closeButton.innerHTML = "×";
 
-  closeButton.onclick = function(event) {
-    event.stopPropagation();
-    closeModal();
-  };
+  closeButton.className =
+    "modal-close";
+
+  closeButton.innerHTML =
+    "×";
+
+
+  closeButton.onclick =
+    function(event) {
+
+      event.stopPropagation();
+
+      closeModal();
+
+    };
+
 
   const img =
     document.createElement("img");
 
+
   img.src =
     element.src;
 
+
   modal.appendChild(img);
+
   modal.appendChild(closeButton);
+
 
   modal.style.display =
     "flex";
+
 }
 
 
@@ -2337,7 +3413,8 @@ function closeModal() {
 
   document
     .getElementById("modal")
-    .style.display = "none";
+    .style.display =
+      "none";
 
 }
 
