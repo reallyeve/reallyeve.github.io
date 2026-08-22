@@ -3134,6 +3134,28 @@ window.openJazzStory = async function(id) {
     document.getElementById("jazzStory");
 
 
+  const storyImage =
+    document.querySelector("#jazzStory .jazz-story-image");
+
+  if (storyImage) {
+
+    storyImage.src =
+      story.image ||
+      "interstellar-blackhole.jpg";
+
+  }
+
+  const storyCaption =
+    document.querySelector("#jazzStory .jazz-story-image-caption");
+
+  if (storyCaption) {
+
+    storyCaption.innerText =
+      story.caption || "";
+
+  }
+
+
   document
     .getElementById("jazzStoryTitle")
     .innerText =
