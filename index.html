@@ -1224,6 +1224,15 @@ textarea {
   color: #999;
 }
 
+.jazz-playlist-songs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .jazz-article-list {
   width: 700px;
   max-width: 100%;
@@ -1266,104 +1275,124 @@ textarea {
 }
 
 
-/* ================================
+/* =================================
    Jazz Playlist 상세
-================================ */
+================================= */
 
 .jazz-playlist-detail {
   width: 90%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .jazz-playlist-detail h3 {
   text-align: center;
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 300;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
+
+.jazz-playlist-intro {
+  text-align: center;
+  font-size: 15px;
+  color: #777;
+  font-style: italic;
+  margin: 0 auto 35px;
+}
+
+.jazz-playlist-songs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Playlist Song Card */
 
 .jazz-playlist-song {
   background: white;
-  border-radius: 16px;
-  padding: 20px 25px;
-  margin-bottom: 15px;
-  text-align: left;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 24px 30px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
-.jazz-playlist-song-title {
-  font-size: 16px;
+.jazz-playlist-song:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
 }
 
-.jazz-playlist-song-year {
+/* 번호 */
+
+.jazz-song-number {
   font-size: 11px;
   color: #999;
-  margin-top: 4px;
+  margin-bottom: 8px;
 }
+
+/* 곡 제목 */
+
+.jazz-playlist-song-title {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+/* 연도 */
+
+.jazz-playlist-song-year {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* 설명 */
 
 .jazz-playlist-song-description {
   font-size: 13px;
   line-height: 1.5;
-  margin-top: 8px;
-  color: #555;
+  color: #444;
+  margin-bottom: 15px;
 }
+
+/* YouTube 버튼 */
 
 .jazz-playlist-song a {
   display: inline-block;
-  margin-top: 12px;
-  color: #555;
-  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: 20px;
+  background: #111;
+  color: white;
   text-decoration: none;
+  font-size: 13px;
+  transition: opacity 0.2s ease;
 }
 
 .jazz-playlist-song a:hover {
+  opacity: 0.7;
+}
+
+/* 뒤로가기 버튼 */
+
+.jazz-playlist-detail .jazz-detail-back {
+  display: block;
+  margin: 45px auto 20px;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.jazz-playlist-detail .jazz-detail-back:hover {
   color: #111;
 }
 
+/* 모바일 */
 
-/* ================================
-   모바일
-================================ */
 
-@media (max-width: 700px) {
-
-  .jazz-preview-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .jazz-preview-column {
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .jazz-preview-column:last-child {
-    border-bottom: none;
-  }
-
-  .jazz-video-list {
-    grid-template-columns: 1fr;
-  }
-
-  .jazz-playlist-detail-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .jazz-article-list {
-    width: 90%;
-  }
-
-  .jazz-home-description {
-    width: 88%;
-    font-size: 15px;
-  }
-
-  .jazz-quote {
-    width: 90%;
-    font-size: 14px;
-  }
-
-}
 
 
 /* ================================
@@ -1673,7 +1702,7 @@ textarea {
           onclick="openJazzPlaylist('midnight')">
 
           <img
-            src="https://i.ytimg.com/vi/LmnRX1MuMgM/hqdefault.jpg"
+            src="https://i.ytimg.com/vi/Ys0q8ljjiY8/hqdefault.jpg"
             alt="Midnight Jazz Playlist">
 
           <div class="jazz-playlist-preview-info">
@@ -1698,7 +1727,7 @@ textarea {
           onclick="openJazzPlaylist('rainy')">
 
           <img
-            src="https://i.ytimg.com/vi/GeYsi9NDM9Y/hqdefault.jpg"
+            src="https://i.ytimg.com/vi/OPyfgLHTvhA/hqdefault.jpg"
             alt="Rainy Day Jazz Playlist">
 
           <div class="jazz-playlist-preview-info">
@@ -1723,7 +1752,7 @@ textarea {
           onclick="openJazzPlaylist('sunday')">
 
           <img
-            src="https://i.ytimg.com/vi/hUGqQyg4N8M/hqdefault.jpg"
+            src="https://i.ytimg.com/vi/NlVPDaYu5EQ/hqdefault.jpg"
             alt="Sunday Morning Jazz Playlist">
 
           <div class="jazz-playlist-preview-info">
@@ -1892,13 +1921,13 @@ textarea {
         onclick="openJazzPlaylist('midnight')">
 
         <img
-          src="https://i.ytimg.com/vi/LmnRX1MuMgM/hqdefault.jpg"
+          src="https://i.ytimg.com/vi/Ys0q8ljjiY8/hqdefault.jpg"
           alt="Midnight Jazz Playlist">
 
         <div class="jazz-playlist-detail-info">
 
           <div class="jazz-playlist-detail-title">
-            Midnight Jazz Playlist
+            Midnight Jazz Playlist. 
           </div>
 
           <div class="jazz-playlist-detail-description">
@@ -1917,7 +1946,7 @@ textarea {
         onclick="openJazzPlaylist('rainy')">
 
         <img
-          src="https://i.ytimg.com/vi/GeYsi9NDM9Y/hqdefault.jpg"
+          src="https://i.ytimg.com/vi/OPyfgLHTvhA/hqdefault.jpg"
           alt="Rainy Day Jazz Playlist">
 
         <div class="jazz-playlist-detail-info">
@@ -1942,7 +1971,7 @@ textarea {
         onclick="openJazzPlaylist('sunday')">
 
         <img
-          src="https://i.ytimg.com/vi/hUGqQyg4N8M/hqdefault.jpg"
+          src="https://i.ytimg.com/vi/NlVPDaYu5EQ/hqdefault.jpg"
           alt="Sunday Morning Jazz Playlist">
 
         <div class="jazz-playlist-detail-info">
@@ -2011,7 +2040,15 @@ textarea {
 
     <h3 id="jazzPlaylistDetailTitle"></h3>
 
-    <div id="jazzPlaylistSongs"></div>
+    <div
+      id="jazzPlaylistIntro"
+      class="jazz-playlist-intro">
+    </div>
+
+    <div 
+      id="jazzPlaylistSongs"
+      class="jazz-playlist-songs">
+    </div>
 
 
     <button
@@ -2454,7 +2491,6 @@ function openJazzPlaylist(name) {
 
   hideAllJazzViews();
 
-
   const detail =
     document.getElementById("jazzPlaylistDetail");
 
@@ -2464,56 +2500,42 @@ function openJazzPlaylist(name) {
   const songs =
     document.getElementById("jazzPlaylistSongs");
 
+  const intro =
+    document.getElementById("jazzPlaylistIntro");
 
   const playlists = {
 
     midnight: {
 
-      title: "Midnight Jazz Playlist",
+      title: "Midnight Jazz Playlist. Ten pieces I keep coming back to.",
+
+      intro:
+        "Ten pieces I keep coming back to.",
 
       songs: [
 
         {
-          title: "keith Jarrett — The melody at night with you",
-          year: "1999",
+          number: "01",
+          title: "Carla Bley — Lawns",
+          year: "1981",
           description:
             "A delicate piano piece filled with space and quiet emotion. Perfect for those nights when you simply want to sit and think.",
           url:
-            "https://youtu.be/LmnRX1MuMgM"
-        }
-
-      ]
-
-    },
-
-
-    rainy: {
-
-      title: "Rainy Day Jazz Playlist",
-
-      songs: [
+            "https://www.youtube.com/results?search_query=Carla+Bley+Lawns"
+        },
 
         {
+          number: "02",
           title: "Astrud Gilberto — Once I Loved",
           year: "1965",
           description:
             "A gentle bossa nova with Astrud Gilberto's soft, simple voice. Warm and effortless, like a quiet evening by the window.",
           url:
             "https://youtu.be/GeYsi9NDM9Y"
-        }
-
-      ]
-
-    },
-
-
-    sunday: {
-
-      title: "Sunday Morning Jazz Playlist",
-
-      songs: [
+        },
 
         {
+          number: "03",
           title:
             "Pat Metheny & Charlie Haden — Our Spanish Love Song",
           year: "1997",
@@ -2521,10 +2543,153 @@ function openJazzPlaylist(name) {
             "Guitar and double bass create an intimate, deeply personal sound. It feels like looking back on a memory that never quite faded.",
           url:
             "https://youtu.be/hUGqQyg4N8M"
+        },
+
+        {
+          number: "04",
+          title: "Bill Evans — Darn That Dream",
+          year: "1962",
+          description:
+            "A beautifully delicate ballad carried by Bill Evans' thoughtful piano. It brings to mind old loves and feelings that never completely disappear.",
+          url:
+            "https://youtu.be/cfDFVJz4GSQ"
+        },
+
+        {
+          number: "05",
+          title:
+            "Keith Jarrett & Charlie Haden — My Old Flame",
+          year: "2014",
+          description:
+            "Piano and double bass move together with remarkable intimacy and restraint. Like quietly looking back on a memory from long ago.",
+          url:
+            "https://www.youtube.com/results?search_query=Keith+Jarrett+Charlie+Haden+My+Old+Flame"
+        },
+
+        {
+          number: "06",
+          title: "Oscar Peterson Trio — My One and Only Love",
+          year: "1964",
+          description:
+            "A warm and elegant take on a timeless love song. Its gentle piano trio sound brings a little light to the quiet of the night.",
+          url:
+            "https://www.youtube.com/results?search_query=Oscar+Peterson+Trio+My+One+and+Only+Love"
+        },
+
+        {
+          number: "07",
+          title:
+            "Chet Baker — You'd Be So Nice to Come Home To",
+          year: "1959",
+          description:
+            "Chet Baker brings a tender warmth to this romantic standard. It carries the feeling of waiting for someone at the end of the night.",
+          url:
+            "https://www.youtube.com/results?search_query=Chet+Baker+You%27d+Be+So+Nice+to+Come+Home+To"
+        },
+
+        {
+          number: "08",
+          title: "John Coltrane — Say It",
+          year: "1963",
+          description:
+            "Coltrane's soft, expressive playing gives this ballad a quiet intensity. Rather than asking for your attention, it seems to whisper its feelings.",
+          url:
+            "https://www.youtube.com/results?search_query=John+Coltrane+Say+It"
+        },
+
+        {
+          number: "09",
+          title: "Blue Mitchell — When I Fall in Love",
+          year: "1960",
+          description:
+            "Blue Mitchell's warm trumpet gives this familiar standard a gentle glow. A slow, relaxed reflection on what it means to fall in love.",
+          url:
+            "https://www.youtube.com/watch?v=rbuOdYRCU2o"
+        },
+
+        {
+          number: "10",
+          title: "Miles Davis — 'Round Midnight",
+          year: "1950",
+          description:
+            "A timeless midnight ballad, quiet, dark, and a little mysterious. A fitting way to end the night, leaving a quiet feeling behind.",
+          url:
+            "https://www.youtube.com/results?search_query=Miles+Davis+Round+Midnight"
         }
 
       ]
+    },
 
+
+    rainy: {
+
+      title: "Rainy Day Jazz Playlist",
+
+      intro:
+        "Soft sounds for a rainy afternoon.",
+
+      songs: [
+
+        {
+          number: "01",
+          title: "John Hicks - Cry me a river",
+          year: "1999",
+          description:
+            "A slow, thoughtful ballad with John Hicks's warm, gentle piano. Quiet and bittersweet, like watching the rain from a window",
+          url:
+            "https://youtu.be/OPyfgLHTvhA"
+        },
+
+        {
+          number: "02",
+          title: "Dave Brubeck Quartet- Someday my price will come",
+          year: "2013",
+          description:
+            "A soft, dreamy jazz piece with Dave brubeck's gentle piano. Calm and little sad, like watching the rain fall outside your window.",
+          url:
+            "https://youtu.be/W-aYWgoAWRI"
+        }
+
+      ]
+    },
+
+
+    sunday: {
+
+      title: "Sunday Morning Jazz Playlist",
+
+      intro:
+        "A gentle start to the day.",
+
+      songs: [
+
+        {
+          number: "01",
+          title:
+            "Blue Mitchell — I’ll close my eyes",
+          year: "1965",
+          description:
+            "A warm, easygoing swing with Blue Mitchell's bright, gentle trumpet. Light and cheerful, like a slow Sunday morning.",
+          url:
+            "https://youtu.be/NlVPDaYu5EQ"
+        
+        },
+      
+
+        {
+          number: "02",
+          title: "Eddie Higgins Quartet - Night and day",
+          year: "2004",
+          description:
+            "A light, easygoing swing with Eddie Higgins's warm piano.",
+          url:
+            "https://www.youtube.com/AnYmHul8nnQ"
+        }
+        
+
+      
+
+      ]
     }
 
   };
@@ -2533,15 +2698,20 @@ function openJazzPlaylist(name) {
   const playlist =
     playlists[name];
 
-
   if (!playlist) return;
 
+
+  /* 제목 */
 
   title.innerText =
     playlist.title;
 
 
+  /* 플레이리스트 설명 + 곡 카드 */
+
   songs.innerHTML = "";
+
+  
 
 
   playlist.songs.forEach(song => {
@@ -2549,12 +2719,15 @@ function openJazzPlaylist(name) {
     const div =
       document.createElement("div");
 
-
     div.className =
       "jazz-playlist-song";
 
 
     div.innerHTML = `
+
+      <div class="jazz-song-number">
+        ${song.number}
+      </div>
 
       <div class="jazz-playlist-song-title">
         ${song.title}
@@ -2570,7 +2743,8 @@ function openJazzPlaylist(name) {
 
       <a
         href="${song.url}"
-        target="_blank">
+        target="_blank"
+        rel="noopener noreferrer">
         ▶ Listen on YouTube
       </a>
 
@@ -3344,7 +3518,7 @@ onSnapshot(
       div.innerHTML = `
 
         <div>
-          ${d.text}
+          ${d.text || ""}
         </div>
 
         <div class="post-time">
