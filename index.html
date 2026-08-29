@@ -286,7 +286,115 @@ textarea {
 
 
 /* ================================
-   Universe 글 목록
+   Universe Home (Deep Dive / Quiz)
+================================ */
+
+.universe-home {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.universe-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.universe-preview-column {
+  min-width: 0;
+  padding: 40px 28px 35px;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.universe-preview-column:last-child {
+  border-right: none;
+}
+
+.universe-preview-heading {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 18px;
+  color: #111;
+  text-align: center;
+}
+
+.universe-clickable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.universe-clickable:hover {
+  opacity: 0.6;
+}
+
+.universe-preview-description {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 auto 30px;
+  max-width: 260px;
+}
+
+.universe-preview-list {
+  text-align: left;
+}
+
+.universe-preview-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.universe-preview-list-item:last-child {
+  border-bottom: none;
+}
+
+.universe-preview-list-item .year {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #999;
+}
+
+.universe-view-all {
+  display: block;
+  margin-top: 25px;
+  color: #777;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.universe-view-all:hover {
+  color: #111;
+}
+
+@media (max-width: 700px) {
+
+  .universe-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .universe-preview-column {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .universe-preview-column:last-child {
+    border-bottom: none;
+  }
+
+}
+
+
+/* ================================
+   Universe 글 목록 (Deep Dive)
 ================================ */
 
 .universe-list {
@@ -367,6 +475,123 @@ textarea {
 
 .universe-back:hover {
   color: black;
+}
+
+
+/* ================================
+   Universe Quiz
+================================ */
+
+.quiz-box {
+  width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.quiz-progress {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.quiz-question {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.quiz-choice-button {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quiz-choice-button:hover:not(:disabled) {
+  border-color: #aaa;
+  background: rgba(255,255,255,0.6);
+}
+
+.quiz-choice-button:disabled {
+  cursor: default;
+}
+
+.quiz-choice-button.correct {
+  border-color: #4a9d5f;
+  background: rgba(74,157,95,0.1);
+  color: #2f6b3d;
+}
+
+.quiz-choice-button.incorrect {
+  border-color: #c25b5b;
+  background: rgba(194,91,91,0.1);
+  color: #8f3f3f;
+}
+
+.quiz-feedback {
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 20px;
+  margin-bottom: 20px;
+}
+
+.quiz-feedback.correct {
+  color: #2f6b3d;
+}
+
+.quiz-feedback.incorrect {
+  color: #8f3f3f;
+}
+
+.quiz-next-button {
+  display: block;
+  margin: 0 0 30px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quiz-next-button:hover {
+  background: #333;
+}
+
+.quiz-result {
+  text-align: center;
+  margin: 20px 0 30px;
+}
+
+.quiz-result-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.quiz-result .quiz-next-button {
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+
+  .quiz-box {
+    width: 90%;
+  }
+
 }
 
 
@@ -1450,23 +1675,23 @@ textarea {
 
 <div class="menu">
 
-  <button id="aboutButton" onclick="showPage('about', this)">
+  <button id="aboutButton" data-page="about" onclick="showPage('about', this)">
     About
   </button>
 
-  <button onclick="showPage('gallery', this)">
+  <button data-page="gallery" onclick="showPage('gallery', this)">
     Gallery
   </button>
 
-  <button onclick="showPage('jazz', this)">
+  <button data-page="jazz" onclick="showPage('jazz', this)">
     Jazz
   </button>
 
-  <button onclick="showPage('universe', this)">
+  <button data-page="universe" onclick="showPage('universe', this)">
     Universe
   </button>
 
-  <button onclick="showPage('post', this)">
+  <button data-page="post" onclick="showPage('post', this)">
     Post
   </button>
 
@@ -1634,7 +1859,7 @@ textarea {
         <div class="jazz-preview-feature">
 
           <iframe
-            src="https://www.youtube.com/embed/wrWQndgX1QU"
+            src="https://www.youtube.com/embed/wrWQndgX1QU?enablejsapi=1"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
@@ -1851,7 +2076,7 @@ textarea {
       <div class="jazz-video-card">
 
         <iframe
-          src="https://www.youtube.com/embed/wrWQndgX1QU"
+          src="https://www.youtube.com/embed/wrWQndgX1QU?enablejsapi=1"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
@@ -1871,7 +2096,7 @@ textarea {
       <div class="jazz-video-card">
 
         <iframe
-          src="https://www.youtube.com/embed/uaoJO_izyTQ"
+          src="https://www.youtube.com/embed/uaoJO_izyTQ?enablejsapi=1"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
@@ -1893,7 +2118,7 @@ textarea {
 
     <button
       class="jazz-detail-back"
-      onclick="showJazzHome()">
+      onclick="history.back()">
       ← Back to Jazz
     </button>
 
@@ -1994,7 +2219,7 @@ textarea {
 
     <button
       class="jazz-detail-back"
-      onclick="showJazzHome()">
+      onclick="history.back()">
       ← Back to Jazz
     </button>
 
@@ -2023,7 +2248,7 @@ textarea {
 
     <button
       class="jazz-detail-back"
-      onclick="showJazzHome()">
+      onclick="history.back()">
       ← Back to Jazz
     </button>
 
@@ -2053,7 +2278,7 @@ textarea {
 
     <button
       class="jazz-detail-back"
-      onclick="showJazzSection('playlists')">
+      onclick="history.back()">
       ← Back to Playlists
     </button>
 
@@ -2124,7 +2349,7 @@ textarea {
 
     <button
       class="jazz-story-back"
-      onclick="backToJazzArticles()">
+      onclick="history.back()">
       ← Back to articles
     </button>
 
@@ -2149,9 +2374,91 @@ textarea {
   </p>
 
 
-  <!-- Universe 글 목록 -->
+  <!-- ================================
+       Universe Home
+  ================================ -->
 
-  <div id="universeListView">
+  <div id="universeHome" class="universe-home">
+
+    <div class="universe-preview-grid">
+
+
+      <!-- Deep Dive -->
+
+      <div class="universe-preview-column">
+
+        <h3
+          class="universe-preview-heading universe-clickable"
+          onclick="showUniverseSection('deepdive')">
+          Deep Dive
+        </h3>
+
+        <p class="universe-preview-description">
+          Long-form notes on space,<br>
+          physics, and the questions they raise.
+        </p>
+
+        <div
+          id="universeDeepDivePreview"
+          class="universe-preview-list">
+          Loading...
+        </div>
+
+        <div
+          class="universe-view-all"
+          onclick="showUniverseSection('deepdive')">
+          View all articles →
+        </div>
+
+      </div>
+
+
+      <!-- Quiz -->
+
+      <div class="universe-preview-column">
+
+        <h3
+          class="universe-preview-heading universe-clickable"
+          onclick="startUniverseQuiz()">
+          Quiz
+        </h3>
+
+        <p class="universe-preview-description">
+          Test what you know<br>
+          about the universe.
+        </p>
+
+        <div
+          id="universeQuizPreview"
+          class="universe-preview-list">
+          Loading...
+        </div>
+
+        <div
+          class="universe-view-all"
+          onclick="startUniverseQuiz()">
+          Start quiz →
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       Deep Dive 글 목록
+  ================================ -->
+
+  <div id="universeDeepDiveList" class="hidden">
+
+    <button
+      class="universe-back"
+      onclick="history.back()">
+      ← Back to Universe
+    </button>
 
     <div
       class="universe-list"
@@ -2161,7 +2468,9 @@ textarea {
   </div>
 
 
-  <!-- Universe 본문 -->
+  <!-- ================================
+       Deep Dive 본문
+  ================================ -->
 
   <div
     id="universeArticleView"
@@ -2187,7 +2496,53 @@ textarea {
 
       <button
         class="universe-back"
-        onclick="backToUniverseList()">
+        onclick="history.back()">
+        ← Back to Deep Dive
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       Quiz
+  ================================ -->
+
+  <div id="universeQuiz" class="hidden">
+
+    <div class="quiz-box">
+
+      <div id="quizProgress" class="quiz-progress"></div>
+
+      <div id="quizQuestion" class="quiz-question"></div>
+
+      <div id="quizChoices" class="quiz-choices"></div>
+
+      <div id="quizFeedback" class="quiz-feedback"></div>
+
+      <button
+        id="quizNextButton"
+        class="quiz-next-button hidden"
+        onclick="nextUniverseQuizQuestion()">
+        Next →
+      </button>
+
+      <div id="quizResult" class="quiz-result hidden">
+
+        <div id="quizResultText" class="quiz-result-text"></div>
+
+        <button
+          class="quiz-next-button"
+          onclick="startUniverseQuiz(false)">
+          Try Again
+        </button>
+
+      </div>
+
+      <button
+        class="universe-back"
+        onclick="history.back()">
         ← Back to Universe
       </button>
 
@@ -2249,6 +2604,116 @@ textarea {
 
 <script>
 
+/* ================================
+   브라우저 뒤로가기 / 앞으로가기 연동
+================================ */
+
+history.replaceState({ page: "about" }, "", location.href);
+
+
+function pushNavState(state) {
+
+  history.pushState(state, "", location.href);
+
+}
+
+
+function restoreNavState(state) {
+
+  if (!state || !state.page) {
+
+    state = { page: "about" };
+
+  }
+
+
+  if (state.page === "jazz") {
+
+    const btn =
+      document.querySelector('.menu button[data-page="jazz"]');
+
+    showPage("jazz", btn, false);
+
+
+    if (
+      state.jazzView === "videos" ||
+      state.jazzView === "playlists" ||
+      state.jazzView === "articles"
+    ) {
+
+      showJazzSection(state.jazzView, false);
+
+    } else if (state.jazzView === "playlistDetail" && state.playlist) {
+
+      openJazzPlaylist(state.playlist, false);
+
+    } else if (state.jazzView === "story" && state.storyId) {
+
+      window.openJazzStory(state.storyId, false);
+
+    } else {
+
+      showJazzHome();
+
+    }
+
+    return;
+
+  }
+
+
+  if (state.page === "universe") {
+
+    const btn =
+      document.querySelector('.menu button[data-page="universe"]');
+
+    showPage("universe", btn, false);
+
+
+    if (state.universeView === "deepdive") {
+
+      showUniverseSection("deepdive", false);
+
+    } else if (
+      state.universeView === "article" &&
+      typeof state.articleIndex === "number"
+    ) {
+
+      showUniverseSection("deepdive", false);
+      openUniversePost(state.articleIndex, false);
+
+    } else if (state.universeView === "quiz") {
+
+      startUniverseQuiz(false);
+
+    } else {
+
+      showUniverseHome();
+
+    }
+
+    return;
+
+  }
+
+
+  const btn =
+    document.querySelector(
+      `.menu button[data-page="${state.page}"]`
+    );
+
+  showPage(state.page, btn, false);
+
+}
+
+
+window.addEventListener("popstate", (event) => {
+
+  restoreNavState(event.state);
+
+});
+
+
 function goHome() {
 
   const aboutButton =
@@ -2269,7 +2734,7 @@ document
   .addEventListener("click", goHome);
 
 
-function showPage(page, btn) {
+function showPage(page, btn, push = true) {
 
 
   /* --------------------------------
@@ -2278,18 +2743,7 @@ function showPage(page, btn) {
 
   if (page !== "jazz") {
 
-    const video =
-      document.getElementById("jazzVideo");
-
-    if (video) {
-
-      const src = video.src;
-
-      video.src = "";
-
-      video.src = src;
-
-    }
+    resetJazzVideoEmbeds();
 
   }
 
@@ -2308,18 +2762,12 @@ function showPage(page, btn) {
 
   /* --------------------------------
      Universe 메뉴를 클릭하면
-     항상 글 목록 화면으로 초기화
+     항상 Universe Home 화면으로 초기화
   -------------------------------- */
 
   if (page === "universe") {
 
-    document
-      .getElementById("universeArticleView")
-      .classList.add("hidden");
-
-    document
-      .getElementById("universeListView")
-      .classList.remove("hidden");
+    showUniverseHome();
 
   }
 
@@ -2384,6 +2832,17 @@ function showPage(page, btn) {
 
   }
 
+
+  /* --------------------------------
+     뒤로가기 이력 등록
+  -------------------------------- */
+
+  if (push) {
+
+    pushNavState({ page });
+
+  }
+
 }
 
 
@@ -2396,7 +2855,49 @@ function showPage(page, btn) {
 
 <script>
 
+/* --------------------------------
+   Jazz 영상 초기화
+   (화면을 벗어나면 재생 중단,
+   다시 들어오면 재생 전 상태로 리셋)
+-------------------------------- */
+
+function resetJazzVideoEmbeds() {
+
+  const iframes =
+    document.querySelectorAll(
+      "#jazzHome .jazz-preview-feature iframe, #jazzVideos .jazz-video-card iframe"
+    );
+
+  iframes.forEach(iframe => {
+
+    if (!iframe.contentWindow) {
+
+      return;
+
+    }
+
+    /* 유튜브 IFrame API에 정지 명령만 전달.
+       (src를 다시 로드하면 Safari가 그 이동을
+       브라우저 뒤로가기 이력에 끼워 넣는 문제가 있었음) */
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "stopVideo",
+        args: []
+      }),
+      "https://www.youtube.com"
+    );
+
+  });
+
+}
+
+
 function hideAllJazzViews() {
+
+  resetJazzVideoEmbeds();
+
 
   const views = [
     "jazzHome",
@@ -2440,7 +2941,7 @@ function showJazzHome() {
 }
 
 
-function showJazzSection(section) {
+function showJazzSection(section, push = true) {
 
   hideAllJazzViews();
 
@@ -2484,10 +2985,17 @@ function showJazzSection(section) {
     behavior: "smooth"
   });
 
+
+  if (push) {
+
+    pushNavState({ page: "jazz", jazzView: section });
+
+  }
+
 }
 
 
-function openJazzPlaylist(name) {
+function openJazzPlaylist(name, push = true) {
 
   hideAllJazzViews();
 
@@ -2764,21 +3272,16 @@ function openJazzPlaylist(name) {
     behavior: "smooth"
   });
 
-}
 
+  if (push) {
 
-function backToJazzArticles() {
+    pushNavState({
+      page: "jazz",
+      jazzView: "playlistDetail",
+      playlist: name
+    });
 
-  hideAllJazzViews();
-
-  document
-    .getElementById("jazzArticles")
-    .classList.remove("hidden");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  }
 
 }
 
@@ -2841,10 +3344,156 @@ function showJazzLanguage(language) {
 <script>
 
 window.universePosts = [];
+window.universeDeepDivePosts = [];
+window.universeQuizPosts = [];
+
+window.universeQuizIndex = 0;
+window.universeQuizScore = 0;
+window.universeQuizAnswered = false;
 
 
 /* ================================
-   Universe 글 목록 생성
+   Universe 화면 전환
+================================ */
+
+function hideAllUniverseViews() {
+
+  const views = [
+    "universeHome",
+    "universeDeepDiveList",
+    "universeArticleView",
+    "universeQuiz"
+  ];
+
+  views.forEach(id => {
+
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+
+      element.classList.add("hidden");
+
+    }
+
+  });
+
+}
+
+
+function showUniverseHome() {
+
+  hideAllUniverseViews();
+
+  document
+    .getElementById("universeHome")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function showUniverseSection(section, push = true) {
+
+  hideAllUniverseViews();
+
+
+  let target = null;
+
+
+  if (section === "deepdive") {
+
+    target =
+      document.getElementById("universeDeepDiveList");
+
+  }
+
+
+  if (target) {
+
+    target.classList.remove("hidden");
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  if (push) {
+
+    pushNavState({ page: "universe", universeView: section });
+
+  }
+
+}
+
+
+/* ================================
+   Universe Home 미리보기
+================================ */
+
+function renderUniversePreview() {
+
+  const deepDivePreview =
+    document.getElementById("universeDeepDivePreview");
+
+  if (window.universeDeepDivePosts.length === 0) {
+
+    deepDivePreview.innerHTML =
+      "No articles yet.";
+
+  } else {
+
+    deepDivePreview.innerHTML =
+      window.universeDeepDivePosts
+        .slice(0, 3)
+        .map((post, index) => `
+
+          <div
+            class="universe-preview-list-item universe-clickable"
+            onclick="openDeepDivePreview(${index})">
+            ${post.title}
+            <span class="year">${post.date}</span>
+          </div>
+
+        `)
+        .join("");
+
+  }
+
+
+  const quizPreview =
+    document.getElementById("universeQuizPreview");
+
+  const quizCount =
+    window.universeQuizPosts.length;
+
+  quizPreview.innerHTML =
+    quizCount > 0
+      ? `<div class="universe-preview-list-item">${quizCount} question${quizCount > 1 ? "s" : ""} ready for you.</div>`
+      : "No quiz yet.";
+
+}
+
+
+function openDeepDivePreview(index) {
+
+  showUniverseSection("deepdive", false);
+
+  openUniversePost(index);
+
+}
+
+
+/* ================================
+   Deep Dive 글 목록 생성
 ================================ */
 
 function renderUniverseList() {
@@ -2855,7 +3504,7 @@ function renderUniverseList() {
   list.innerHTML = "";
 
 
-  window.universePosts.forEach((post, index) => {
+  window.universeDeepDivePosts.forEach((post, index) => {
 
     const item =
       document.createElement("div");
@@ -2893,17 +3542,17 @@ function renderUniverseList() {
 
 
 /* ================================
-   Universe 글 열기
+   Deep Dive 글 열기
 ================================ */
 
-function openUniversePost(index) {
+function openUniversePost(index, push = true) {
 
   const post =
-    window.universePosts[index];
+    window.universeDeepDivePosts[index];
 
 
   document
-    .getElementById("universeListView")
+    .getElementById("universeDeepDiveList")
     .classList.add("hidden");
 
 
@@ -2937,22 +3586,250 @@ function openUniversePost(index) {
     .innerText =
       post.content;
 
+
+  if (push) {
+
+    pushNavState({
+      page: "universe",
+      universeView: "article",
+      articleIndex: index
+    });
+
+  }
+
 }
 
 
 /* ================================
-   Universe 목록으로 돌아가기
+   Quiz 시작
 ================================ */
 
-function backToUniverseList() {
+function startUniverseQuiz(push = true) {
+
+  hideAllUniverseViews();
 
   document
-    .getElementById("universeArticleView")
+    .getElementById("universeQuiz")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("quizResult")
     .classList.add("hidden");
 
 
+  if (push) {
+
+    pushNavState({ page: "universe", universeView: "quiz" });
+
+  }
+
+
+  if (window.universeQuizPosts.length === 0) {
+
+    document.getElementById("quizProgress").innerText = "";
+    document.getElementById("quizQuestion").innerText = "No quiz available yet.";
+    document.getElementById("quizChoices").innerHTML = "";
+    document.getElementById("quizFeedback").innerText = "";
+
+    document
+      .getElementById("quizNextButton")
+      .classList.add("hidden");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    return;
+
+  }
+
+
+  window.universeQuizIndex = 0;
+  window.universeQuizScore = 0;
+
+  renderUniverseQuizQuestion();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+}
+
+
+/* ================================
+   Quiz 문제 렌더링
+================================ */
+
+function renderUniverseQuizQuestion() {
+
+  const quiz =
+    window.universeQuizPosts[window.universeQuizIndex];
+
+  window.universeQuizAnswered = false;
+
+
+  document.getElementById("quizProgress").innerText =
+    `Question ${window.universeQuizIndex + 1} / ${window.universeQuizPosts.length}`;
+
+  document.getElementById("quizQuestion").innerText =
+    quiz.question;
+
+  document.getElementById("quizFeedback").innerText = "";
+  document.getElementById("quizFeedback").className = "quiz-feedback";
+
   document
-    .getElementById("universeListView")
+    .getElementById("quizNextButton")
+    .classList.add("hidden");
+
+
+  const choicesContainer =
+    document.getElementById("quizChoices");
+
+  choicesContainer.innerHTML = "";
+
+
+  if (!Array.isArray(quiz.choices) || quiz.choices.length === 0) {
+
+    choicesContainer.innerHTML =
+      "<p style='color:#c25b5b;font-size:13px;'>⚠ 이 문제에는 choices 배열이 없습니다. Firestore 문서를 확인해주세요.</p>";
+
+    return;
+
+  }
+
+
+  quiz.choices.forEach((choice, index) => {
+
+    const button =
+      document.createElement("button");
+
+    button.className = "quiz-choice-button";
+    button.innerText = choice;
+
+    button.onclick = function() {
+
+      selectUniverseQuizAnswer(index);
+
+    };
+
+    choicesContainer.appendChild(button);
+
+  });
+
+}
+
+
+/* ================================
+   Quiz 정답 선택
+================================ */
+
+function selectUniverseQuizAnswer(choiceIndex) {
+
+  if (window.universeQuizAnswered) {
+
+    return;
+
+  }
+
+  window.universeQuizAnswered = true;
+
+
+  const quiz =
+    window.universeQuizPosts[window.universeQuizIndex];
+
+  const buttons =
+    document.querySelectorAll("#quizChoices .quiz-choice-button");
+
+  buttons.forEach((button, index) => {
+
+    button.disabled = true;
+
+    if (index === quiz.answerIndex) {
+
+      button.classList.add("correct");
+
+    } else if (index === choiceIndex) {
+
+      button.classList.add("incorrect");
+
+    }
+
+  });
+
+
+  const feedback =
+    document.getElementById("quizFeedback");
+
+  const isCorrect =
+    choiceIndex === quiz.answerIndex;
+
+  if (isCorrect) {
+
+    window.universeQuizScore++;
+
+    feedback.innerText =
+      quiz.explanation
+        ? `Correct! ${quiz.explanation}`
+        : "Correct!";
+
+    feedback.className = "quiz-feedback correct";
+
+  } else {
+
+    feedback.innerText =
+      quiz.explanation
+        ? `Not quite. ${quiz.explanation}`
+        : "Not quite.";
+
+    feedback.className = "quiz-feedback incorrect";
+
+  }
+
+
+  document
+    .getElementById("quizNextButton")
+    .classList.remove("hidden");
+
+}
+
+
+/* ================================
+   Quiz 다음 문제 / 결과
+================================ */
+
+function nextUniverseQuizQuestion() {
+
+  window.universeQuizIndex++;
+
+  if (window.universeQuizIndex >= window.universeQuizPosts.length) {
+
+    showUniverseQuizResult();
+
+  } else {
+
+    renderUniverseQuizQuestion();
+
+  }
+
+}
+
+
+function showUniverseQuizResult() {
+
+  document.getElementById("quizProgress").innerText = "";
+  document.getElementById("quizQuestion").innerText = "";
+  document.getElementById("quizChoices").innerHTML = "";
+  document.getElementById("quizFeedback").innerText = "";
+
+  document
+    .getElementById("quizNextButton")
+    .classList.add("hidden");
+
+
+  const total = window.universeQuizPosts.length;
+  const score = window.universeQuizScore;
+
+  document.getElementById("quizResultText").innerText =
+    `You got ${score} / ${total} correct.`;
+
+  document
+    .getElementById("quizResult")
     .classList.remove("hidden");
 
 }
@@ -3287,7 +4164,7 @@ window.renderJazzArticleList = function() {
 };
 
 
-window.openJazzStory = async function(id) {
+window.openJazzStory = async function(id, push = true) {
 
   const story =
     await window.getJazzStoryById(id);
@@ -3362,6 +4239,17 @@ window.openJazzStory = async function(id) {
     behavior: "smooth"
   });
 
+
+  if (push) {
+
+    pushNavState({
+      page: "jazz",
+      jazzView: "story",
+      storyId: id
+    });
+
+  }
+
 };
 
 
@@ -3397,7 +4285,22 @@ onSnapshot(
     );
 
 
+    /* category가 "quiz"가 아니면
+       모두 Deep Dive로 취급 (기존 글 호환) */
+
+    window.universeDeepDivePosts =
+      window.universePosts.filter(
+        (post) => post.category !== "quiz"
+      );
+
+    window.universeQuizPosts =
+      window.universePosts
+        .filter((post) => post.category === "quiz")
+        .sort((a, b) => a.order - b.order);
+
+
     renderUniverseList();
+    renderUniversePreview();
 
   },
 
