@@ -596,6 +596,124 @@ textarea {
 
 
 /* ================================
+   Universe Quiz Themes
+================================ */
+
+.quiz-theme-page {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.quiz-theme-intro {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 30px 0 8px;
+  color: #111;
+}
+
+.quiz-theme-intro-desc {
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 30px;
+}
+
+.quiz-theme-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.quiz-theme-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease,
+              opacity 0.2s ease;
+}
+
+.quiz-theme-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 25px rgba(0,0,0,0.10);
+}
+
+.quiz-theme-card-visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-theme-card-icon {
+  font-size: 32px;
+}
+
+.quiz-theme-card-info {
+  padding: 14px 14px 15px;
+  text-align: left;
+}
+
+.quiz-theme-card-title {
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.quiz-theme-card-subtitle {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.quiz-theme-card-status {
+  font-size: 10.5px;
+  color: #4a9d5f;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.quiz-theme-card-status.muted {
+  color: #aaa;
+}
+
+.quiz-theme-card.featured {
+  border: 1px solid #c9a227;
+}
+
+.quiz-theme-card.featured .quiz-theme-card-visual {
+  aspect-ratio: 4 / 3;
+}
+
+.quiz-theme-card.featured .quiz-theme-card-icon {
+  font-size: 44px;
+}
+
+.quiz-theme-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.quiz-theme-card.disabled:hover {
+  transform: none;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 700px) {
+
+  .quiz-theme-cards {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ================================
    About
 ================================ */
 
@@ -2419,7 +2537,7 @@ textarea {
 
         <h3
           class="universe-preview-heading universe-clickable"
-          onclick="startUniverseQuiz()">
+          onclick="showUniverseQuizHome()">
           Quiz
         </h3>
 
@@ -2436,12 +2554,45 @@ textarea {
 
         <div
           class="universe-view-all"
-          onclick="startUniverseQuiz()">
-          Start quiz →
+          onclick="showUniverseQuizHome()">
+          Choose a quiz →
         </div>
 
       </div>
 
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       Quiz 테마 선택
+  ================================ -->
+
+  <div id="universeQuizHome" class="hidden">
+
+    <div class="quiz-theme-page">
+
+      <button
+        class="universe-back"
+        onclick="history.back()">
+        ← Back to Universe
+      </button>
+
+      <h3 class="quiz-theme-intro">
+        Universe Quiz
+      </h3>
+
+      <p class="quiz-theme-intro-desc">
+        Pick a theme to test what you know.
+      </p>
+
+      <div
+        id="quizThemeCards"
+        class="quiz-theme-cards">
+        Loading...
+      </div>
 
     </div>
 
@@ -2534,7 +2685,7 @@ textarea {
 
         <button
           class="quiz-next-button"
-          onclick="startUniverseQuiz(false)">
+          onclick="startUniverseQuiz(window.universeQuizActiveTheme, false)">
           Try Again
         </button>
 
@@ -2543,7 +2694,7 @@ textarea {
       <button
         class="universe-back"
         onclick="history.back()">
-        ← Back to Universe
+        ← Back to Quiz
       </button>
 
     </div>
@@ -2682,9 +2833,13 @@ function restoreNavState(state) {
       showUniverseSection("deepdive", false);
       openUniversePost(state.articleIndex, false);
 
+    } else if (state.universeView === "quizHome") {
+
+      showUniverseQuizHome(false);
+
     } else if (state.universeView === "quiz") {
 
-      startUniverseQuiz(false);
+      startUniverseQuiz(state.quizTheme, false);
 
     } else {
 
@@ -3346,10 +3501,37 @@ function showJazzLanguage(language) {
 window.universePosts = [];
 window.universeDeepDivePosts = [];
 window.universeQuizPosts = [];
+window.universeQuizDeck = [];
+window.universeQuizActiveTheme = null;
 
 window.universeQuizIndex = 0;
 window.universeQuizScore = 0;
 window.universeQuizAnswered = false;
+
+window.universeQuizThemes = [
+  {
+    id: "solar-system",
+    title: "Solar System",
+    subtitle: "우리가 살고 있는 우주부터 알아보기",
+    icon: "🌙",
+    gradient: "linear-gradient(135deg, #2b2d6e, #5b6fae)"
+  },
+  {
+    id: "beyond-solar-system",
+    title: "Beyond the Solar System",
+    subtitle: "태양계 밖에는 무엇이 있을까?",
+    icon: "✨",
+    gradient: "linear-gradient(135deg, #1b1440, #4b2e83)",
+    featured: true
+  },
+  {
+    id: "interstellar",
+    title: "Interstellar",
+    subtitle: "영화에서 본 것이 실제 우주에서는 어떻게 작동할까?",
+    icon: "🌀",
+    gradient: "linear-gradient(135deg, #0d0d0d, #383838)"
+  }
+];
 
 
 /* ================================
@@ -3362,6 +3544,7 @@ function hideAllUniverseViews() {
     "universeHome",
     "universeDeepDiveList",
     "universeArticleView",
+    "universeQuizHome",
     "universeQuiz"
   ];
 
@@ -3601,10 +3784,109 @@ function openUniversePost(index, push = true) {
 
 
 /* ================================
+   Quiz 테마 선택
+================================ */
+
+function showUniverseQuizHome(push = true) {
+
+  hideAllUniverseViews();
+
+  document
+    .getElementById("universeQuizHome")
+    .classList.remove("hidden");
+
+  renderQuizThemeCards();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+
+  if (push) {
+
+    pushNavState({ page: "universe", universeView: "quizHome" });
+
+  }
+
+}
+
+
+function renderQuizThemeCards() {
+
+  const container =
+    document.getElementById("quizThemeCards");
+
+  if (!container) {
+
+    return;
+
+  }
+
+  container.innerHTML =
+    window.universeQuizThemes
+      .map((theme) => {
+
+        const count =
+          window.universeQuizPosts.filter(
+            (post) => post.theme === theme.id
+          ).length;
+
+        const available = count > 0;
+
+        const statusText =
+          available
+            ? `${count} question${count > 1 ? "s" : ""} ready`
+            : "Coming soon";
+
+        return `
+
+          <div
+            class="quiz-theme-card${theme.featured ? " featured" : ""}${available ? "" : " disabled"}"
+            ${available ? `onclick="startUniverseQuiz('${theme.id}')"` : ""}>
+
+            <div
+              class="quiz-theme-card-visual"
+              style="background:${theme.gradient}">
+              <span class="quiz-theme-card-icon">${theme.icon}</span>
+            </div>
+
+            <div class="quiz-theme-card-info">
+
+              <div class="quiz-theme-card-title">
+                ${theme.title}
+              </div>
+
+              <div class="quiz-theme-card-subtitle">
+                ${theme.subtitle}
+              </div>
+
+              <div class="quiz-theme-card-status${available ? "" : " muted"}">
+                ${statusText}
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+}
+
+
+/* ================================
    Quiz 시작
 ================================ */
 
-function startUniverseQuiz(push = true) {
+function startUniverseQuiz(theme, push = true) {
+
+  window.universeQuizActiveTheme = theme;
+
+  window.universeQuizDeck =
+    window.universeQuizPosts.filter(
+      (post) => post.theme === theme
+    );
+
 
   hideAllUniverseViews();
 
@@ -3619,12 +3901,12 @@ function startUniverseQuiz(push = true) {
 
   if (push) {
 
-    pushNavState({ page: "universe", universeView: "quiz" });
+    pushNavState({ page: "universe", universeView: "quiz", quizTheme: theme });
 
   }
 
 
-  if (window.universeQuizPosts.length === 0) {
+  if (window.universeQuizDeck.length === 0) {
 
     document.getElementById("quizProgress").innerText = "";
     document.getElementById("quizQuestion").innerText = "No quiz available yet.";
@@ -3659,13 +3941,13 @@ function startUniverseQuiz(push = true) {
 function renderUniverseQuizQuestion() {
 
   const quiz =
-    window.universeQuizPosts[window.universeQuizIndex];
+    window.universeQuizDeck[window.universeQuizIndex];
 
   window.universeQuizAnswered = false;
 
 
   document.getElementById("quizProgress").innerText =
-    `Question ${window.universeQuizIndex + 1} / ${window.universeQuizPosts.length}`;
+    `Question ${window.universeQuizIndex + 1} / ${window.universeQuizDeck.length}`;
 
   document.getElementById("quizQuestion").innerText =
     quiz.question;
@@ -3731,7 +4013,7 @@ function selectUniverseQuizAnswer(choiceIndex) {
 
 
   const quiz =
-    window.universeQuizPosts[window.universeQuizIndex];
+    window.universeQuizDeck[window.universeQuizIndex];
 
   const buttons =
     document.querySelectorAll("#quizChoices .quiz-choice-button");
@@ -3797,7 +4079,7 @@ function nextUniverseQuizQuestion() {
 
   window.universeQuizIndex++;
 
-  if (window.universeQuizIndex >= window.universeQuizPosts.length) {
+  if (window.universeQuizIndex >= window.universeQuizDeck.length) {
 
     showUniverseQuizResult();
 
@@ -3822,7 +4104,7 @@ function showUniverseQuizResult() {
     .classList.add("hidden");
 
 
-  const total = window.universeQuizPosts.length;
+  const total = window.universeQuizDeck.length;
   const score = window.universeQuizScore;
 
   document.getElementById("quizResultText").innerText =
@@ -4301,6 +4583,7 @@ onSnapshot(
 
     renderUniverseList();
     renderUniversePreview();
+    renderQuizThemeCards();
 
   },
 
