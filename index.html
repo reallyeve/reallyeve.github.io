@@ -494,6 +494,27 @@ textarea {
   margin-bottom: 20px;
 }
 
+.quiz-progress-count {
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+
+.quiz-progress-line {
+  position: relative;
+  height: 1px;
+  background: #ddd;
+}
+
+.quiz-progress-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: #111;
+  transition: width 0.4s ease;
+}
+
 .quiz-question {
   font-size: 20px;
   font-weight: 500;
@@ -3517,12 +3538,13 @@ window.universeQuizThemes = [
     gradient: "linear-gradient(135deg, #2b2d6e, #5b6fae)"
   },
   {
-    id: "beyond-solar-system",
-    title: "Beyond the Solar System",
-    subtitle: "태양계 밖에는 무엇이 있을까?",
+    id: "astronomy-exam",
+    title: "천문지도사 3급 모의고사",
+    subtitle: "천문지도사 3급 시험 대비 50문제",
     icon: "✨",
     gradient: "linear-gradient(135deg, #1b1440, #4b2e83)",
-    featured: true
+    featured: true,
+    progress: "line"
   },
   {
     id: "interstellar",
@@ -3946,8 +3968,29 @@ function renderUniverseQuizQuestion() {
   window.universeQuizAnswered = false;
 
 
-  document.getElementById("quizProgress").innerText =
-    `Question ${window.universeQuizIndex + 1} / ${window.universeQuizDeck.length}`;
+  const activeTheme =
+    window.universeQuizThemes.find(
+      (theme) => theme.id === window.universeQuizActiveTheme
+    );
+
+  const current = window.universeQuizIndex + 1;
+  const total = window.universeQuizDeck.length;
+
+  if (activeTheme && activeTheme.progress === "line") {
+
+    document.getElementById("quizProgress").innerHTML = `
+      <div class="quiz-progress-count">${current} / ${total}</div>
+      <div class="quiz-progress-line">
+        <div class="quiz-progress-line-fill" style="width:${(current / total) * 100}%"></div>
+      </div>
+    `;
+
+  } else {
+
+    document.getElementById("quizProgress").innerText =
+      `Question ${current} / ${total}`;
+
+  }
 
   document.getElementById("quizQuestion").innerText =
     quiz.question;

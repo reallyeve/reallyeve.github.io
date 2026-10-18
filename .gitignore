@@ -1,1 +1,7 @@
 .DS_Store
+
+# Firebase 서비스 계정 키
+*-firebase-adminsdk-*.json
+
+# 천문지도사 문제 원본/변환 파일
+천문지도사/
