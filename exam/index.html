@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>천문지도사 3급 모의고사 · Heather's Archive</title>
+
+<style>
+
+/* ================================
+   기본 (메인 사이트와 같은 톤)
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #ebedee;
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+  background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+  color: #111;
+  min-height: 100vh;
+}
+
+.page {
+  width: 560px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 16px 60px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ================================
+   헤더
+================================ */
+
+.site-link {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+
+.site-link:hover {
+  color: #111;
+}
+
+.exam-title {
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 0 0 8px;
+}
+
+.exam-subtitle {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 36px;
+}
+
+
+/* ================================
+   시작 화면
+================================ */
+
+.intro-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid #e3e3e3;
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+
+.intro-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #444;
+  margin: 0 0 20px;
+}
+
+.intro-card ul {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #666;
+  padding-left: 18px;
+  margin: 0 0 26px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #333;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+.btn.secondary:hover {
+  border-color: #888;
+  background: rgba(255,255,255,0.6);
+}
+
+.status-text {
+  font-size: 14px;
+  color: #888;
+}
+
+.status-text.error {
+  color: #8f3f3f;
+  line-height: 1.7;
+}
+
+
+/* ================================
+   문제 화면
+================================ */
+
+.progress-count {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+
+.progress-line {
+  position: relative;
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 32px;
+}
+
+.progress-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: #111;
+  transition: width 0.4s ease;
+}
+
+.question-number {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.question {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  white-space: pre-line;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.choice {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.5;
+  color: #111;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choice:hover:not(:disabled) {
+  border-color: #aaa;
+}
+
+.choice:disabled {
+  cursor: default;
+}
+
+.choice.correct {
+  border-color: #4a9d5f;
+  background: rgba(74,157,95,0.1);
+  color: #2f6b3d;
+}
+
+.choice.incorrect {
+  border-color: #c25b5b;
+  background: rgba(194,91,91,0.1);
+  color: #8f3f3f;
+}
+
+.feedback {
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.feedback-verdict {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.feedback.correct .feedback-verdict {
+  color: #2f6b3d;
+}
+
+.feedback.incorrect .feedback-verdict {
+  color: #8f3f3f;
+}
+
+.feedback-explanation {
+  color: #444;
+}
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-button {
+  border: none;
+  background: none;
+  padding: 6px 0;
+  font-size: 13px;
+  font-family: inherit;
+  color: #888;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  color: #111;
+}
+
+
+/* ================================
+   결과 화면
+================================ */
+
+.result-score {
+  font-size: 44px;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  margin: 8px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-caption {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 28px;
+}
+
+.result-section-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #888;
+  margin: 40px 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-item {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.review-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.review-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.review-item summary .num {
+  color: #8f3f3f;
+  font-variant-numeric: tabular-nums;
+  margin-right: 8px;
+}
+
+.review-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #444;
+  padding: 0 0 16px;
+  white-space: pre-line;
+}
+
+.review-body .mine {
+  color: #8f3f3f;
+}
+
+.review-body .answer {
+  color: #2f6b3d;
+}
+
+.all-correct {
+  font-size: 14px;
+  color: #2f6b3d;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 480px) {
+
+  .page {
+    padding-top: 28px;
+  }
+
+  .exam-title {
+    font-size: 22px;
+  }
+
+  .question {
+    font-size: 17px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <a class="site-link" href="/">HEATHER'S ARCHIVE</a>
+
+  <h1 class="exam-title">천문지도사 3급 모의고사</h1>
+  <p class="exam-subtitle" id="examSubtitle">3급 시험 대비 문제를 순서대로 풀어 봅니다.</p>
+
+
+  <!-- 시작 화면 -->
+  <section id="introView">
+    <div class="intro-card">
+      <p id="introStatus" class="status-text">문제를 불러오는 중…</p>
+      <div id="introBody" class="hidden">
+        <ul>
+          <li>문제는 1번부터 순서대로 나옵니다.</li>
+          <li>보기를 고르면 바로 정답과 해설이 보입니다.</li>
+          <li>풀던 위치는 이 기기에 저장되어, 다시 들어오면 이어서 풀 수 있습니다.</li>
+          <li>마지막에 틀린 문제만 모아 다시 풀 수 있습니다.</li>
+        </ul>
+        <div class="button-row">
+          <button class="btn hidden" id="resumeButton" onclick="resumeExam()"></button>
+          <button class="btn" id="startButton" onclick="startExam()">처음부터 시작</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 문제 화면 -->
+  <section id="quizView" class="hidden">
+
+    <div class="progress-count">
+      <span id="progressCount"></span>
+      <span id="progressScore"></span>
+    </div>
+    <div class="progress-line">
+      <div class="progress-line-fill" id="progressFill"></div>
+    </div>
+
+    <div class="question-number" id="questionNumber"></div>
+    <div class="question" id="questionText"></div>
+    <div class="choices" id="choices"></div>
+    <div class="feedback hidden" id="feedback"></div>
+
+    <div class="quiz-nav">
+      <button class="text-button" onclick="goToIntro()">← 처음 화면</button>
+      <button class="btn hidden" id="nextButton" onclick="nextQuestion()">다음 문제 →</button>
+    </div>
+
+  </section>
+
+
+  <!-- 결과 화면 -->
+  <section id="resultView" class="hidden">
+
+    <div class="result-score" id="resultScore"></div>
+    <p class="result-caption" id="resultCaption"></p>
+
+    <div class="button-row">
+      <button class="btn" id="retryWrongButton" onclick="retryWrong()">틀린 문제만 다시 풀기</button>
+      <button class="btn secondary" onclick="startExam()">처음부터 다시</button>
+    </div>
+
+    <div class="result-section-title" id="reviewTitle">틀린 문제 다시 보기</div>
+    <div id="reviewList"></div>
+
+  </section>
+
+  <footer>Heather's Archive · Universe Quiz</footer>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { getFirestore, collection, getDocs }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+/* ================================
+   설정
+================================ */
+
+// 메인 사이트(index.html)와 같은 공개 웹 설정입니다.
+const app = initializeApp({
+  apiKey: "AIzaSyAE7hlVkufdpgBFDWCCcsOjBkjsyLerzEo",
+  authDomain: "heather-s-archive.firebaseapp.com",
+  projectId: "heather-s-archive"
+});
+
+const db = getFirestore(app);
+
+const THEME = "astronomy-exam";
+const STORAGE_KEY = "heathersArchive.astronomyExam.v1";
+
+
+/* ================================
+   상태
+================================ */
+
+let allQuestions = [];   // 전체 문제 (order 순)
+let deck = [];           // 이번 회차에 푸는 문제
+let index = 0;
+let answers = {};        // { 문서 id: 고른 보기 index }
+let answered = false;
+let mode = "all";        // "all" | "wrong"
+
+
+/* ================================
+   저장 (이 기기 브라우저에만)
+================================ */
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      mode,
+      deckIds: deck.map(q => q.id),
+      index,
+      answers
+    }));
+  } catch (e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function clearState() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (e) {}
+}
+
+
+/* ================================
+   화면 전환
+================================ */
+
+function show(viewId) {
+  ["introView", "quizView", "resultView"].forEach(id => {
+    document.getElementById(id).classList.toggle("hidden", id !== viewId);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+/* ================================
+   문제 불러오기
+================================ */
+
+async function loadQuestions() {
+
+  const status = document.getElementById("introStatus");
+
+  try {
+
+    const snapshot = await getDocs(collection(db, "universePosts"));
+
+    const list = [];
+
+    snapshot.forEach(docSnap => {
+      const data = docSnap.data();
+      if (data.category === "quiz" && data.theme === THEME) {
+        list.push({ id: docSnap.id, ...data });
+      }
+    });
+
+    // order는 문자열로 저장되어 있어 숫자로 바꿔 정렬합니다.
+    list.sort((a, b) => Number(a.order) - Number(b.order));
+
+    allQuestions = list.filter(
+      q => Array.isArray(q.choices) && q.choices.length > 0
+    );
+
+    if (allQuestions.length === 0) {
+      status.textContent = "등록된 문제가 아직 없습니다.";
+      return;
+    }
+
+    status.classList.add("hidden");
+    document.getElementById("introBody").classList.remove("hidden");
+    document.getElementById("examSubtitle").textContent =
+      `3급 시험 대비 ${allQuestions.length}문제 · 순서대로 풀기`;
+
+    renderResumeButton();
+
+  } catch (error) {
+
+    console.error("문제 불러오기 오류:", error);
+    status.classList.add("error");
+    status.textContent =
+      "문제를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침해 주세요.";
+
+  }
+
+}
+
+
+function renderResumeButton() {
+
+  const saved = loadState();
+  const button = document.getElementById("resumeButton");
+
+  if (!saved || !Array.isArray(saved.deckIds)) {
+    button.classList.add("hidden");
+    return;
+  }
+
+  const restored = saved.deckIds
+    .map(id => allQuestions.find(q => q.id === id))
+    .filter(Boolean);
+
+  if (restored.length === 0 || saved.index >= restored.length) {
+    button.classList.add("hidden");
+    return;
+  }
+
+  button.textContent =
+    saved.mode === "wrong"
+      ? `틀린 문제 이어서 풀기 (${saved.index + 1} / ${restored.length})`
+      : `이어서 풀기 (${saved.index + 1}번부터)`;
+
+  button.classList.remove("hidden");
+  document.getElementById("startButton").className = "btn secondary";
+
+}
+
+
+/* ================================
+   시작 / 이어서 / 다시
+================================ */
+
+window.startExam = function() {
+  mode = "all";
+  deck = allQuestions.slice();
+  index = 0;
+  answers = {};
+  saveState();
+  renderQuestion();
+  show("quizView");
+};
+
+window.resumeExam = function() {
+  const saved = loadState();
+  if (!saved) {
+    window.startExam();
+    return;
+  }
+  mode = saved.mode || "all";
+  deck = saved.deckIds
+    .map(id => allQuestions.find(q => q.id === id))
+    .filter(Boolean);
+  index = Math.min(saved.index || 0, deck.length - 1);
+  answers = saved.answers || {};
+  renderQuestion();
+  show("quizView");
+};
+
+window.retryWrong = function() {
+  const wrong = deck.filter(q => answers[q.id] !== Number(q.answerIndex));
+  if (wrong.length === 0) return;
+  mode = "wrong";
+  deck = wrong;
+  index = 0;
+  wrong.forEach(q => delete answers[q.id]);
+  saveState();
+  renderQuestion();
+  show("quizView");
+};
+
+window.goToIntro = function() {
+  renderResumeButton();
+  show("introView");
+};
+
+
+/* ================================
+   문제 표시
+================================ */
+
+function questionLabel(q) {
+  const n = Number(q.order);
+  return Number.isFinite(n) ? `Q${n}` : "";
+}
+
+function renderQuestion() {
+
+  const q = deck[index];
+  answered = false;
+
+  const current = index + 1;
+  const total = deck.length;
+
+  document.getElementById("progressCount").textContent =
+    mode === "wrong"
+      ? `틀린 문제 ${current} / ${total}`
+      : `${current} / ${total}`;
+
+  document.getElementById("progressFill").style.width =
+    `${(current / total) * 100}%`;
+
+  const correctSoFar = deck
+    .slice(0, index)
+    .filter(item => answers[item.id] === Number(item.answerIndex))
+    .length;
+
+  document.getElementById("progressScore").textContent =
+    index > 0 ? `맞힌 문제 ${correctSoFar}` : "";
+
+  document.getElementById("questionNumber").textContent = questionLabel(q);
+  document.getElementById("questionText").textContent = q.question;
+
+  const feedback = document.getElementById("feedback");
+  feedback.className = "feedback hidden";
+  feedback.innerHTML = "";
+
+  document.getElementById("nextButton").classList.add("hidden");
+
+  const choices = document.getElementById("choices");
+  choices.innerHTML = "";
+
+  q.choices.forEach((choice, i) => {
+    const button = document.createElement("button");
+    button.className = "choice";
+    button.textContent = choice;
+    button.onclick = () => selectAnswer(i);
+    choices.appendChild(button);
+  });
+
+  // 이어 풀기로 들어왔을 때 이미 답한 문제면 결과를 바로 보여 줍니다.
+  if (answers[q.id] !== undefined) {
+    selectAnswer(answers[q.id], true);
+  }
+
+}
+
+
+/* ================================
+   정답 선택
+================================ */
+
+function selectAnswer(choiceIndex, restoring = false) {
+
+  if (answered) return;
+  answered = true;
+
+  const q = deck[index];
+  const answerIndex = Number(q.answerIndex);
+  const isCorrect = choiceIndex === answerIndex;
+
+  document.querySelectorAll("#choices .choice").forEach((button, i) => {
+    button.disabled = true;
+    if (i === answerIndex) button.classList.add("correct");
+    else if (i === choiceIndex) button.classList.add("incorrect");
+  });
+
+  const feedback = document.getElementById("feedback");
+  feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
+  feedback.innerHTML = "";
+
+  const verdict = document.createElement("span");
+  verdict.className = "feedback-verdict";
+  verdict.textContent = isCorrect
+    ? "정답입니다."
+    : `오답입니다. 정답은 ${answerIndex + 1}번입니다.`;
+  feedback.appendChild(verdict);
+
+  if (q.explanation) {
+    const explanation = document.createElement("span");
+    explanation.className = "feedback-explanation";
+    explanation.textContent = q.explanation;
+    feedback.appendChild(explanation);
+  }
+
+  const nextButton = document.getElementById("nextButton");
+  nextButton.textContent =
+    index === deck.length - 1 ? "결과 보기 →" : "다음 문제 →";
+  nextButton.classList.remove("hidden");
+
+  if (!restoring) {
+    answers[q.id] = choiceIndex;
+    saveState();
+  }
+
+}
+
+
+/* ================================
+   다음 / 결과
+================================ */
+
+window.nextQuestion = function() {
+  index++;
+  if (index >= deck.length) {
+    showResult();
+  } else {
+    saveState();
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+};
+
+function showResult() {
+
+  const total = deck.length;
+  const wrong = deck.filter(q => answers[q.id] !== Number(q.answerIndex));
+  const score = total - wrong.length;
+
+  document.getElementById("resultScore").textContent = `${score} / ${total}`;
+  document.getElementById("resultCaption").textContent =
+    (mode === "wrong" ? "틀린 문제 다시 풀기 결과 · " : "") +
+    `정답률 ${Math.round((score / total) * 100)}%`;
+
+  document.getElementById("retryWrongButton")
+    .classList.toggle("hidden", wrong.length === 0);
+
+  const list = document.getElementById("reviewList");
+  list.innerHTML = "";
+
+  if (wrong.length === 0) {
+    const done = document.createElement("p");
+    done.className = "all-correct";
+    done.textContent = "모두 맞혔습니다.";
+    list.appendChild(done);
+  }
+
+  wrong.forEach(q => {
+
+    const answerIndex = Number(q.answerIndex);
+    const mine = answers[q.id];
+
+    const item = document.createElement("details");
+    item.className = "review-item";
+
+    const summary = document.createElement("summary");
+    const num = document.createElement("span");
+    num.className = "num";
+    num.textContent = questionLabel(q);
+    summary.appendChild(num);
+    summary.appendChild(document.createTextNode(q.question));
+    item.appendChild(summary);
+
+    const body = document.createElement("div");
+    body.className = "review-body";
+
+    const mineLine = document.createElement("div");
+    mineLine.className = "mine";
+    mineLine.textContent =
+      mine !== undefined && q.choices[mine] !== undefined
+        ? `내 답: ${q.choices[mine]}`
+        : "내 답: (선택 안 함)";
+    body.appendChild(mineLine);
+
+    const answerLine = document.createElement("div");
+    answerLine.className = "answer";
+    answerLine.textContent = `정답: ${q.choices[answerIndex] ?? ""}`;
+    body.appendChild(answerLine);
+
+    if (q.explanation) {
+      const exp = document.createElement("div");
+      exp.style.marginTop = "6px";
+      exp.textContent = q.explanation;
+      body.appendChild(exp);
+    }
+
+    item.appendChild(body);
+    list.appendChild(item);
+
+  });
+
+  // 결과까지 마친 회차는 이어 풀기 대상에서 지웁니다.
+  clearState();
+
+  show("resultView");
+
+}
+
+
+/* ================================
+   키보드: 1~4로 보기 선택, Enter로 다음
+================================ */
+
+document.addEventListener("keydown", event => {
+
+  if (document.getElementById("quizView").classList.contains("hidden")) return;
+
+  const n = Number(event.key);
+  if (!answered && n >= 1 && n <= deck[index].choices.length) {
+    selectAnswer(n - 1);
+  } else if (event.key === "Enter") {
+    // 포커스된 버튼이 한 번 더 눌려 문제를 건너뛰지 않도록 막습니다.
+    event.preventDefault();
+    if (answered) window.nextQuestion();
+  }
+
+});
+
+
+loadQuestions();
+
+</script>
+
+</body>
+</html>
