@@ -2326,26 +2326,26 @@ textarea {
         <h3
           class="jazz-preview-heading jazz-clickable"
           onclick="showJazzSection('articles')">
-          Articles
+          Journal
         </h3>
 
         <p class="jazz-preview-description">
-          Thoughts on jazz,<br>
-          improvisation, and more.
+          My own thoughts from<br>
+          reading, listening to, and playing jazz.
         </p>
 
 
         <div
           id="jazzArticlePreview"
           class="jazz-article-preview">
-          Loading articles...
+          Loading entries...
         </div>
 
 
         <div
           class="jazz-view-all"
           onclick="showJazzSection('articles')">
-          View all articles →
+          View all entries →
         </div>
 
       </div>
@@ -2547,14 +2547,14 @@ textarea {
     id="jazzArticles"
     class="jazz-detail-page hidden">
 
-    <h3>Articles</h3>
+    <h3>Journal</h3>
 
 
     <div
       id="jazzArticleList"
       class="jazz-article-list">
 
-      Loading articles...
+      Loading entries...
 
     </div>
 
@@ -2663,7 +2663,7 @@ textarea {
     <button
       class="jazz-story-back"
       onclick="history.back()">
-      ← Back to articles
+      ← Back to Journal
     </button>
 
   </div>
@@ -4498,7 +4498,7 @@ window.loadJazzStories = async function() {
 
       preview.innerHTML = `
         <div class="jazz-article-preview-empty">
-          Articles could not be loaded.
+          Entries could not be loaded.
         </div>
       `;
 
@@ -4509,7 +4509,7 @@ window.loadJazzStories = async function() {
 
       list.innerHTML = `
         <div class="jazz-article-preview-empty">
-          Articles could not be loaded.
+          Entries could not be loaded.
         </div>
       `;
 
@@ -4536,7 +4536,7 @@ window.renderJazzArticlePreviews = function() {
 
     container.innerHTML = `
       <div class="jazz-article-preview-empty">
-        No articles yet.
+        No entries yet.
       </div>
     `;
 
@@ -4620,7 +4620,7 @@ window.renderJazzArticleList = function() {
 
     container.innerHTML = `
       <div class="jazz-article-preview-empty">
-        No articles yet.
+        No entries yet.
       </div>
     `;
 
