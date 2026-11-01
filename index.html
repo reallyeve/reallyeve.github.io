@@ -1201,12 +1201,17 @@ textarea {
   max-width: 700px;
   margin: 10px auto 35px;
   text-align: center;
+  container-type: inline-size;
 }
 
+/* 높이 상한 = 칸 너비의 50.2%: 2:1 사진은 그대로, 더 세로로 긴 사진은 줄어듦 */
 .jazz-story-image {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 50.2cqw;
+  margin: 0 auto;
   border-radius: 12px;
 }
 
