@@ -648,6 +648,59 @@ textarea {
 
 
 /* ================================
+   Blog (Deep Dive 스타일 재사용)
+================================ */
+
+.universe-preview-grid.blog-preview-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.blog-preview-grid .universe-preview-description {
+  max-width: none;
+  word-break: keep-all;
+}
+
+@media (max-width: 700px) {
+
+  .universe-preview-grid.blog-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.blog-episode-number {
+  margin-right: 6px;
+  color: #999;
+  font-weight: 400;
+}
+
+.blog-article .article-content {
+  font-size: 16px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.blog-episode-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.blog-episode-nav .universe-back {
+  margin-top: 0;
+  text-align: left;
+}
+
+.blog-episode-nav #blogNextButton {
+  margin-left: auto;
+  text-align: right;
+}
+
+
+/* ================================
    Universe Quiz
 ================================ */
 
@@ -2004,6 +2057,10 @@ textarea {
     Universe
   </button>
 
+  <button data-page="blog" onclick="showPage('blog', this)">
+    Blog
+  </button>
+
   <button data-page="post" onclick="showPage('post', this)">
     Post
   </button>
@@ -2925,6 +2982,137 @@ textarea {
 
 
 <!-- ================================
+     Blog
+================================ -->
+
+<div id="blog" class="hidden">
+
+
+  <!-- ================================
+       Blog Home (Dev Log / Essay)
+  ================================ -->
+
+  <div id="blogListView">
+
+    <h2>Why Do I Write Things Down?</h2>
+
+    <div class="universe-home">
+
+      <div class="universe-preview-grid blog-preview-grid">
+
+
+        <!-- Dev Log -->
+
+        <div class="universe-preview-column">
+
+          <h3 class="universe-preview-heading">
+            Dev Log
+          </h3>
+
+          <p class="universe-preview-description">
+            「Hello, World부터 말하는 법」<br>
+            ‘404 Not Found’에서 시작해, 나를 닮은 웹사이트를 짓기까지의 기록
+          </p>
+
+          <!-- 글이 생기면: Firestore devLogPosts 컬렉션을 불러와
+               renderBlogList처럼 이 목록을 그리고,
+               글 주소는 #blog/dev/1 형식 사용 (blogStateFromHash 참고) -->
+          <div
+            id="devLogList"
+            class="universe-preview-list">
+            <div class="jazz-article-preview-empty">
+              Coming soon.
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- Essay -->
+
+        <div class="universe-preview-column">
+
+          <h3 class="universe-preview-heading">
+            Essay
+          </h3>
+
+          <p class="universe-preview-description">
+            「930억 광년의 우주에서 안녕을 말하는 법」<br>
+            넓은 우주에서 처음 마주한 사람들과 나눈, 수많은 ‘안녕’의 기록
+          </p>
+
+          <div
+            id="blogList"
+            class="universe-preview-list">
+            <div class="jazz-article-preview-empty">
+              Loading...
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       Blog 본문
+  ================================ -->
+
+  <div
+    id="blogPostView"
+    class="hidden">
+
+    <div class="universe-article blog-article">
+
+      <h3 id="blogPostTitle"></h3>
+
+      <p class="universe-article-author">
+        Written by Heather
+      </p>
+
+      <div
+        id="blogPostDate"
+        class="article-date">
+      </div>
+
+      <div
+        id="blogPostBody"
+        class="article-content">
+      </div>
+
+      <div class="blog-episode-nav">
+
+        <button
+          id="blogPrevButton"
+          class="universe-back hidden">
+        </button>
+
+        <button
+          id="blogNextButton"
+          class="universe-back hidden">
+        </button>
+
+      </div>
+
+      <button
+        class="universe-back"
+        onclick="showBlogList()">
+        ← Back to Blog
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
      Post
 ================================ -->
 
@@ -2979,12 +3167,53 @@ textarea {
    브라우저 뒤로가기 / 앞으로가기 연동
 ================================ */
 
-history.replaceState({ page: "about" }, "", location.href);
+/* Blog만 주소에 해시를 남김:
+   #blog (Home), #blog/3 (Essay 3화), #blog/dev/1 (Dev Log 1편, 아직 화면 없음) */
+
+function blogStateFromHash() {
+
+  const match =
+    location.hash.match(/^#blog(?:\/(dev\/)?(\d+))?$/);
+
+  if (!match) return null;
+
+  if (!match[2]) return { page: "blog", blogView: "list" };
+
+  return {
+    page: "blog",
+    blogView: match[1] ? "devPost" : "post",
+    episode: Number(match[2])
+  };
+
+}
+
+
+function navUrl(state) {
+
+  const base =
+    location.pathname + location.search;
+
+  if (state.page !== "blog") return base;
+
+  if (state.blogView === "post") return `${base}#blog/${state.episode}`;
+
+  if (state.blogView === "devPost") return `${base}#blog/dev/${state.episode}`;
+
+  return `${base}#blog`;
+
+}
+
+
+history.replaceState(
+  blogStateFromHash() || { page: "about" },
+  "",
+  location.href
+);
 
 
 function pushNavState(state) {
 
-  history.pushState(state, "", location.href);
+  history.pushState(state, "", navUrl(state));
 
 }
 
@@ -2993,7 +3222,29 @@ function restoreNavState(state) {
 
   if (!state || !state.page) {
 
-    state = { page: "about" };
+    state = blogStateFromHash() || { page: "about" };
+
+  }
+
+
+  if (state.page === "blog") {
+
+    const btn =
+      document.querySelector('.menu button[data-page="blog"]');
+
+    showPage("blog", btn, false);
+
+
+    if (state.blogView === "post" && state.episode) {
+
+      openBlogPost(state.episode, false);
+
+    }
+
+    /* Dev Log 글이 생기면 여기에
+       state.blogView === "devPost" 분기 추가 (openDevLogPost) */
+
+    return;
 
   }
 
@@ -3148,6 +3399,18 @@ function showPage(page, btn, push = true) {
 
 
   /* --------------------------------
+     Blog 메뉴를 클릭하면
+     항상 목록 화면으로 초기화
+  -------------------------------- */
+
+  if (page === "blog") {
+
+    showBlogList(false);
+
+  }
+
+
+  /* --------------------------------
      모든 페이지 숨기기
   -------------------------------- */
 
@@ -3156,6 +3419,7 @@ function showPage(page, btn, push = true) {
     "gallery",
     "jazz",
     "universe",
+    "blog",
     "post"
   ];
 
@@ -4362,6 +4626,323 @@ function showUniverseQuizResult() {
 
 
 <!-- ================================
+     Blog 글 목록 / 본문
+================================ -->
+
+<script>
+
+window.blogPosts = [];
+window.blogPostsLoaded = false;
+window.blogPendingEpisode = null;
+
+
+function hideAllBlogViews() {
+
+  ["blogListView", "blogPostView"].forEach(id => {
+
+    document
+      .getElementById(id)
+      .classList.add("hidden");
+
+  });
+
+}
+
+
+function showBlogList(push = true) {
+
+  window.blogPendingEpisode = null;
+
+  hideAllBlogViews();
+
+  document
+    .getElementById("blogListView")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  if (push) {
+
+    pushNavState({ page: "blog", blogView: "list" });
+
+  }
+
+}
+
+
+function blogEpisodeLabel(post) {
+
+  return `${post.episode}화 ${post.title || ""}`;
+
+}
+
+
+/* ================================
+   Blog 글 목록 생성
+================================ */
+
+function renderBlogList() {
+
+  const list =
+    document.getElementById("blogList");
+
+  if (window.blogPosts.length === 0) {
+
+    list.innerHTML = `
+      <div class="jazz-article-preview-empty">
+        No entries yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  window.blogPosts.forEach((post) => {
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "universe-preview-list-item universe-clickable";
+
+    item.onclick = function() {
+
+      openBlogPost(post.episode);
+
+    };
+
+
+    const number =
+      document.createElement("span");
+
+    number.className =
+      "blog-episode-number";
+
+    number.textContent =
+      `${post.episode}화`;
+
+    item.append(number, post.title || "");
+
+
+    /* date가 있는 글만 연도 줄 표시 */
+
+    if (post.date) {
+
+      const year =
+        document.createElement("span");
+
+      year.className =
+        "year";
+
+      year.textContent =
+        String(post.date).slice(0, 4);
+
+      item.append(year);
+
+    }
+
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* ================================
+   Blog 글 열기 (회차 번호 기준)
+================================ */
+
+function openBlogPost(episode, push = true) {
+
+  const index =
+    window.blogPosts.findIndex(
+      (post) => post.episode === episode
+    );
+
+
+  if (index === -1) {
+
+    /* 직접 링크로 들어와 데이터가 아직 없으면
+       도착한 뒤에 열기 */
+
+    if (!window.blogPostsLoaded) {
+
+      window.blogPendingEpisode = episode;
+
+      hideAllBlogViews();
+
+      document
+        .getElementById("blogListView")
+        .classList.remove("hidden");
+
+      return;
+
+    }
+
+
+    /* 없는 회차면 목록으로 */
+
+    showBlogList(false);
+
+    history.replaceState(
+      { page: "blog", blogView: "list" },
+      "",
+      navUrl({ page: "blog", blogView: "list" })
+    );
+
+    return;
+
+  }
+
+
+  const post =
+    window.blogPosts[index];
+
+  const prev =
+    window.blogPosts[index - 1];
+
+  const next =
+    window.blogPosts[index + 1];
+
+
+  hideAllBlogViews();
+
+  document
+    .getElementById("blogPostView")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("blogPostTitle")
+    .textContent =
+      blogEpisodeLabel(post);
+
+  document
+    .getElementById("blogPostDate")
+    .textContent =
+      post.date || "";
+
+  document
+    .getElementById("blogPostBody")
+    .textContent =
+      post.body || "";
+
+
+  const prevButton =
+    document.getElementById("blogPrevButton");
+
+  const nextButton =
+    document.getElementById("blogNextButton");
+
+  prevButton.classList.toggle("hidden", !prev);
+  nextButton.classList.toggle("hidden", !next);
+
+  if (prev) {
+
+    prevButton.textContent =
+      `← ${blogEpisodeLabel(prev)}`;
+
+    prevButton.onclick = () => openBlogPost(prev.episode);
+
+  }
+
+  if (next) {
+
+    nextButton.textContent =
+      `${blogEpisodeLabel(next)} →`;
+
+    nextButton.onclick = () => openBlogPost(next.episode);
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  if (push) {
+
+    pushNavState({
+      page: "blog",
+      blogView: "post",
+      episode: post.episode
+    });
+
+  }
+
+}
+
+
+/* ================================
+   Firestore에서 받은 글 반영
+   (콘솔에서 샘플 글로 확인할 때도 사용)
+================================ */
+
+window.setBlogPosts = function(posts) {
+
+  window.blogPosts =
+    posts
+      .filter((post) => post.published !== false)
+      .map((post) => ({ ...post, episode: Number(post.episode) }))
+      .sort((a, b) => a.episode - b.episode);
+
+  window.blogPostsLoaded = true;
+
+  renderBlogList();
+
+
+  const pending =
+    window.blogPendingEpisode;
+
+  if (pending !== null) {
+
+    window.blogPendingEpisode = null;
+
+    openBlogPost(pending, false);
+
+  }
+
+};
+
+
+window.showBlogLoadError = function() {
+
+  if (window.blogPostsLoaded) return;
+
+  document
+    .getElementById("blogList")
+    .innerHTML = `
+      <div class="jazz-article-preview-empty">
+        Entries could not be loaded.
+      </div>
+    `;
+
+};
+
+
+/* 주소가 #blog 또는 #blog/3 으로 시작하면 바로 Blog 화면으로 */
+
+if (blogStateFromHash()) {
+
+  restoreNavState(history.state);
+
+}
+
+</script>
+
+
+<!-- ================================
      Firebase
 ================================ -->
 
@@ -4836,6 +5417,47 @@ onSnapshot(
       "Universe 글 불러오기 오류:",
       error
     );
+
+  }
+
+);
+
+
+/* ================================
+   Blog 글 불러오기
+================================ */
+
+onSnapshot(
+  collection(db, "blogPosts"),
+
+  (snapshot) => {
+
+    const posts = [];
+
+    snapshot.forEach((documentSnapshot) => {
+
+      posts.push({
+
+        id: documentSnapshot.id,
+        ...documentSnapshot.data()
+
+      });
+
+    });
+
+    window.setBlogPosts(posts);
+
+  },
+
+
+  (error) => {
+
+    console.error(
+      "Blog 글 불러오기 오류:",
+      error
+    );
+
+    window.showBlogLoadError();
 
   }
 
