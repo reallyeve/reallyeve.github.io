@@ -3911,9 +3911,18 @@ document
   .querySelector('.menu button[data-page="christmas"]')
   .hidden = !isChristmasMenuOn();
 
+/* Christmas가 켜져 있는 동안 Gallery는 비공개 */
+document
+  .querySelector('.menu button[data-page="gallery"]')
+  .hidden = isChristmasMenuOn();
+
+/* 메뉴가 7개 이상 보일 때만 모바일 글자·간격 축소 */
 document
   .querySelector(".menu")
-  .classList.toggle("xmas-menu-on", isChristmasMenuOn());
+  .classList.toggle(
+    "xmas-menu-on",
+    document.querySelectorAll(".menu button:not([hidden])").length > 6
+  );
 
 
 /* Christmas 영상: 썸네일을 누르면 같은 자리에서 유튜브 재생 */
@@ -4164,6 +4173,18 @@ function showPage(page, btn, push = true) {
   -------------------------------- */
 
   if (page === "christmas" && !isChristmasMenuOn()) {
+
+    page = "about";
+    btn = document.getElementById("aboutButton");
+
+  }
+
+
+  /* --------------------------------
+     Christmas가 켜져 있으면 Gallery 대신 About으로
+  -------------------------------- */
+
+  if (page === "gallery" && isChristmasMenuOn()) {
 
     page = "about";
     btn = document.getElementById("aboutButton");
